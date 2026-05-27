@@ -1,13 +1,12 @@
 <template>
-  <header>
-    <div>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <div
+    class="h-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('./assets/bg.png')"
+  >
+    <h1>HERO SECTION</h1>
+  </div>
+
+  <div>
+    <h3>test</h3>
+  </div>
 </template>
