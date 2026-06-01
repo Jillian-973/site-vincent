@@ -1,15 +1,16 @@
 <template>
-  <div
-    class="relative flex flex-col items-center justify-center py-10 select-none overflow-hidden"
-    :style="{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)' }"
-  >
+  <div class="relative flex flex-col items-center justify-center py-10 select-none overflow-hidden">
     <!-- Slides track -->
-    <div class="relative flex items-center justify-center w-full h-72">
+    <div
+      ref="trackRef"
+      class="relative flex items-center justify-center w-4/5 mx-auto"
+      :style="{ height: trackHeight + 'px' }"
+    >
       <div
         v-for="(slide, index) in slides"
         :key="slide.id"
         :style="getSlideStyle(index)"
-        class="absolute rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ease-out"
+        class="absolute border-4 border-white rounded-4xl overflow-hidden cursor-pointer transition-all duration-500 ease-out"
         @click="goTo(index)"
       >
         <img
@@ -41,7 +42,7 @@
       <!-- Prev arrow -->
       <button
         @click="prev"
-        class="text-white opacity-70 hover:opacity-100 transition-opacity text-xl leading-none"
+        class="text-white cursor-pointer opacity-70 hover:opacity-100 transition-opacity text-xl leading-none"
         aria-label="Précédent"
       >
         ←
@@ -54,7 +55,7 @@
           :key="index"
           @click="goTo(index)"
           :class="[
-            'rounded-full transition-all duration-300',
+            'rounded-full cursor-pointer transition-all duration-300',
             index === current ? 'w-3 h-3 bg-pink-500' : 'w-2 h-2 bg-white/30 hover:bg-white/60',
           ]"
           :aria-label="`Aller au slide ${index + 1}`"
@@ -64,7 +65,7 @@
       <!-- Next arrow -->
       <button
         @click="next"
-        class="text-white opacity-70 hover:opacity-100 transition-opacity text-xl leading-none"
+        class="text-white cursor-pointer opacity-70 hover:opacity-100 transition-opacity text-xl leading-none"
         aria-label="Suivant"
       >
         →
@@ -74,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   slides: {
@@ -91,6 +92,21 @@ const props = defineProps({
 
 const current = ref(0)
 const total = computed(() => props.slides.length)
+
+// Responsive sizing based on container width
+const trackRef = ref(null)
+const containerWidth = ref(800)
+
+const trackHeight = computed(() => containerWidth.value * 0.38)
+
+let ro = null
+onMounted(() => {
+  ro = new ResizeObserver(([entry]) => {
+    containerWidth.value = entry.contentRect.width
+  })
+  if (trackRef.value) ro.observe(trackRef.value)
+})
+onBeforeUnmount(() => ro?.disconnect())
 
 function goTo(index) {
   current.value = (index + total.value) % total.value
@@ -118,53 +134,58 @@ function getSlideStyle(index) {
   // Only render up to ±2 positions
   if (abs > 2) return { opacity: 0, pointerEvents: 'none', zIndex: 0 }
 
+  const cw = containerWidth.value
+  // Active slide = 42% of container width, 16:10 ratio
+  const w0 = cw * 0.42
+  const h0 = w0 * 0.625
+
   const configs = {
-    0: { x: '0%', scale: 1, opacity: 1, width: '340px', height: '220px', zIndex: 30, blur: 0 },
+    0: { x: 0, scale: 1, opacity: 1, width: w0, height: h0, zIndex: 30, blur: 0 },
     1: {
-      x: '55%',
-      scale: 0.82,
+      x: cw * 0.3,
+      scale: 0.78,
       opacity: 0.7,
-      width: '280px',
-      height: '180px',
+      width: w0 * 0.78,
+      height: h0 * 0.78,
       zIndex: 20,
       blur: 1,
     },
     '-1': {
-      x: '-55%',
-      scale: 0.82,
+      x: -cw * 0.3,
+      scale: 0.78,
       opacity: 0.7,
-      width: '280px',
-      height: '180px',
+      width: w0 * 0.78,
+      height: h0 * 0.78,
       zIndex: 20,
       blur: 1,
     },
     2: {
-      x: '95%',
-      scale: 0.65,
+      x: cw * 0.52,
+      scale: 0.6,
       opacity: 0.35,
-      width: '220px',
-      height: '150px',
+      width: w0 * 0.6,
+      height: h0 * 0.6,
       zIndex: 10,
       blur: 2,
     },
     '-2': {
-      x: '-95%',
-      scale: 0.65,
+      x: -cw * 0.52,
+      scale: 0.6,
       opacity: 0.35,
-      width: '220px',
-      height: '150px',
+      width: w0 * 0.6,
+      height: h0 * 0.6,
       zIndex: 10,
       blur: 2,
     },
   }
 
   const key = String(offset)
-  const c = configs[key] ?? configs[String(abs)] // fallback
+  const c = configs[key]
 
   return {
-    width: c.width,
-    height: c.height,
-    transform: `translateX(${c.x}) scale(${c.scale})`,
+    width: c.width + 'px',
+    height: c.height + 'px',
+    transform: `translateX(${c.x}px) scale(${c.scale})`,
     opacity: c.opacity,
     zIndex: c.zIndex,
     filter: c.blur ? `blur(${c.blur}px)` : 'none',
