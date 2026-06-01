@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col items-center justify-center py-10 select-none overflow-hidden">
+  <div class="relative py-18 flex flex-col items-center justify-center py-10 select-none overflow-hidden">
     <!-- Slides track -->
     <div
       ref="trackRef"
@@ -24,10 +24,10 @@
         <Transition name="fade">
           <div
             v-if="index === current"
-            class="absolute bottom-4 left-1/2 -translate-x-1/2 px-5 py-2 rounded-full text-white font-semibold text-sm whitespace-nowrap"
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 px-20 py-2 rounded-3xl text-white font-semibold text-xl whitespace-nowrap"
             style="
               background: rgba(0, 0, 0, 0.5);
-              border: 1.5px solid rgba(255, 255, 255, 0.4);
+              border: 4px solid var(--color-blue);
               backdrop-filter: blur(8px);
             "
           >

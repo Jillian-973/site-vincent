@@ -4,7 +4,7 @@ import Header from './components/header.vue'
 import bgImage2 from './assets/gradende.png'
 import Carousel from './components/carousel.vue'
 import { h } from 'vue'
-import footer from './components/footer.vue'
+import Footer from './components/footer.vue'
 
 const scrollTo = (id) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -186,7 +186,5 @@ const features = [
     </div>
   </div>
 
-  <footer>
-    <Footer class="bg-gray-800 text-white py-8 py-20" />
-  </footer>
+  <Footer class="bg-gray-800 text-white py-8 py-20" />
 </template>

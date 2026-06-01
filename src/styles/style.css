@@ -12,3 +12,12 @@ h5,
 h6 {
   font-family: 'Exo 2', sans-serif;
 }
+
+@theme {
+  --color-blue: #3daeba;
+  --color-synthwave-magenta: #fa0881;
+  --color-neon-sunset: #fc9d03;
+  --color-electric-violet: #8802fc;
+  --color-cosmic-white: #eeedfb;
+  --color-retrogrid-black: #100923;
+}
