@@ -155,7 +155,6 @@ const features = [
   </div>
 
   <div class="w-full px-6 py-16 text-white">
-    <!-- Header -->
     <div class="text-center mb-12">
       <p class="text-sm font-semibold uppercase tracking-widest text-white/70 mb-3">
         C'EST QUOI NOTRE PROJET ?
