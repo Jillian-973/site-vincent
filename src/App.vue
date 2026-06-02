@@ -120,7 +120,7 @@ const features = [
     </header>
 
     <div class="flex flex-col items-center justify-center text-center gap-4 px-4">
-      <h1 class="text-5xl sm:text-7xl md:text-[96px] font-bold">Phronesis</h1>
+      <h1 class="text-5xl sm:text-7xl md:text-[96px] font-bold">Mésotès</h1>
       <p class="max-w-xs sm:max-w-xl md:max-w-4xl font-bold text-base sm:text-xl md:text-[24px]">
         L'IA , peut s'apprendre en jouant. Phronesis réinvente la pédagogie autour de l'IA
         générative à travers des expériences interactives, des défis et des discussions qui font
