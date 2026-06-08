@@ -6,28 +6,13 @@ import Carousel from './components/carousel.vue'
 import { h } from 'vue'
 import Footer from './components/footer.vue'
 
+import ordinateur from './assets/ordinateur.svg'
+
 const scrollTo = (id) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-const MonitorIcon = () =>
-  h(
-    'svg',
-    {
-      xmlns: 'http://www.w3.org/2000/svg',
-      fill: 'none',
-      viewBox: '0 0 24 24',
-      stroke: 'currentColor',
-      'stroke-width': '1.5',
-    },
-    [
-      h('path', {
-        'stroke-linecap': 'round',
-        'stroke-linejoin': 'round',
-        d: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3',
-      }),
-    ],
-  )
+const MonitorIcon = ordinateur
 
 const HourglassIcon = () =>
   h(
@@ -120,16 +105,27 @@ const features = [
     </header>
 
     <div class="flex flex-col items-center justify-center text-center gap-4 px-4">
-      <h1 class="text-5xl sm:text-7xl md:text-[96px] font-bold">Mésotès</h1>
-      <p class="max-w-xs sm:max-w-xl md:max-w-4xl font-bold text-base sm:text-xl md:text-[24px]">
-        L'IA , peut s'apprendre en jouant. Phronesis réinvente la pédagogie autour de l'IA
-        générative à travers des expériences interactives, des défis et des discussions qui font
-        réfléchir.
-      </p>
+      <h1>
+        <img src="./assets/mesotes.png" alt="Mesotes titre" class="sm:w-50 md:w-200" />
+      </h1>
+      <div
+        class="rounded-2xl px-25 py-2"
+        style="
+          background-color: rgb(100, 100, 100);
+          border: 0px solid white;
+          backdrop-filter: blur(3px);
+        "
+      >
+        <p
+          class="max-w-xs sm:max-w-xl md:max-w-4xl text-base sm:text-xl md:text-[24px] text-black italic"
+        >
+          Plateforme libre de ressources pédagogiques innovantes <br />
+          pour se faire former autrement à l’intelligence artificielle
+        </p>
+      </div>
     </div>
 
     <div class="flex flex-col items-center justify-center text-center gap-4 pb-6">
-      <p class="text-2xl sm:text-3xl md:text-[36px] font-bold">Nos activités</p>
       <img
         @click="scrollTo('activites')"
         src="./assets/mouse.png"

@@ -1,16 +1,19 @@
 <template>
-  <div class="relative py-18 flex flex-col items-center justify-center py-10 select-none overflow-hidden">
+  <div class="relative flex flex-col items-center justify-center py-10 select-none overflow-hidden">
     <!-- Slides track -->
     <div
       ref="trackRef"
-      class="relative flex items-center justify-center w-4/5 mx-auto"
+      class="relative flex items-center justify-center w-4/5 mx-auto touch-pan-y"
       :style="{ height: trackHeight + 'px' }"
+      @touchstart.passive="onTouchStart"
+      @touchend.passive="onTouchEnd"
     >
       <div
         v-for="(slide, index) in slides"
         :key="slide.id"
         :style="getSlideStyle(index)"
-        class="absolute border-4 border-white rounded-4xl overflow-hidden cursor-pointer transition-all duration-500 ease-out"
+        class="absolute overflow-hidden border-3 border-white cursor-pointer transition-all duration-500 ease-out"
+        :class="isMobile ? 'rounded-xl' : 'rounded-2xl'"
         @click="goTo(index)"
       >
         <img
@@ -24,10 +27,11 @@
         <Transition name="fade">
           <div
             v-if="index === current"
-            class="absolute bottom-4 left-1/2 -translate-x-1/2 px-20 py-2 rounded-3xl text-white font-semibold text-xl whitespace-nowrap"
+            class="absolute bottom-3 left-1/2 -translate-x-1/2 px-15 py-1.5 rounded-2xl text-white font-semibold whitespace-nowrap"
+            :class="isMobile ? 'text-xs' : 'text-xl'"
             style="
               background: rgba(0, 0, 0, 0.5);
-              border: 4px solid var(--color-blue);
+              border: 3px solid var(--color-blue);
               backdrop-filter: blur(8px);
             "
           >
@@ -39,33 +43,30 @@
 
     <!-- Navigation row -->
     <div class="flex items-center gap-6 mt-6">
-      <!-- Prev arrow -->
       <button
         @click="prev"
-        class="text-white cursor-pointer opacity-70 hover:opacity-100 transition-opacity text-xl leading-none"
+        class="text-white opacity-70 hover:opacity-100 transition-opacity text-xl leading-none p-2"
         aria-label="Précédent"
       >
         ←
       </button>
 
-      <!-- Dots -->
-      <div class="flex gap-2">
+      <div class="flex items-center gap-2">
         <button
-          v-for="(_, index) in slides"
-          :key="index"
-          @click="goTo(index)"
+          v-for="(_, i) in slides"
+          :key="i"
+          @click="goTo(i)"
           :class="[
-            'rounded-full cursor-pointer transition-all duration-300',
-            index === current ? 'w-3 h-3 bg-pink-500' : 'w-2 h-2 bg-white/30 hover:bg-white/60',
+            'rounded-full transition-all duration-300',
+            i === current ? 'w-3 h-3 bg-pink-500' : 'w-2 h-2 bg-white/30 hover:bg-white/60',
           ]"
-          :aria-label="`Aller au slide ${index + 1}`"
+          :aria-label="`Aller au slide ${i + 1}`"
         />
       </div>
 
-      <!-- Next arrow -->
       <button
         @click="next"
-        class="text-white cursor-pointer opacity-70 hover:opacity-100 transition-opacity text-xl leading-none"
+        class="text-white opacity-70 hover:opacity-100 transition-opacity text-xl leading-none p-2"
         aria-label="Suivant"
       >
         →
@@ -93,11 +94,19 @@ const props = defineProps({
 const current = ref(0)
 const total = computed(() => props.slides.length)
 
-// Responsive sizing based on container width
+// ── Responsive sizing ──────────────────────────────────────────────
 const trackRef = ref(null)
-const containerWidth = ref(800)
+const containerWidth = ref(600)
 
-const trackHeight = computed(() => containerWidth.value * 0.38)
+// Mobile = container width under 500px (80vw of ~390px iPhone = 312px)
+const isMobile = computed(() => containerWidth.value < 500)
+
+// Track height: taller ratio on mobile so slide isn't a tiny strip
+const trackHeight = computed(() =>
+  isMobile.value
+    ? containerWidth.value * 0.58 // ~181px on iPhone 13
+    : containerWidth.value * 0.4,
+)
 
 let ro = null
 onMounted(() => {
@@ -108,6 +117,7 @@ onMounted(() => {
 })
 onBeforeUnmount(() => ro?.disconnect())
 
+// ── Navigation ─────────────────────────────────────────────────────
 function goTo(index) {
   current.value = (index + total.value) % total.value
 }
@@ -118,7 +128,17 @@ function prev() {
   goTo(current.value - 1)
 }
 
-// Compute position relative to current (-2, -1, 0, 1, 2)
+// ── Touch swipe ────────────────────────────────────────────────────
+let touchStartX = 0
+function onTouchStart(e) {
+  touchStartX = e.touches[0].clientX
+}
+function onTouchEnd(e) {
+  const delta = touchStartX - e.changedTouches[0].clientX
+  if (Math.abs(delta) > 40) delta > 0 ? next() : prev()
+}
+
+// ── Slide positioning ──────────────────────────────────────────────
 function getOffset(index) {
   let offset = index - current.value
   const half = Math.floor(total.value / 2)
@@ -130,16 +150,40 @@ function getOffset(index) {
 function getSlideStyle(index) {
   const offset = getOffset(index)
   const abs = Math.abs(offset)
-
-  // Only render up to ±2 positions
-  if (abs > 2) return { opacity: 0, pointerEvents: 'none', zIndex: 0 }
-
   const cw = containerWidth.value
-  // Active slide = 42% of container width, 16:10 ratio
-  const w0 = cw * 0.42
-  const h0 = w0 * 0.625
 
-  const configs = {
+  // On mobile only show ±1 neighbours — ±2 are hidden
+  const maxVisible = isMobile.value ? 1 : 2
+  if (abs > maxVisible) return { opacity: 0, pointerEvents: 'none', zIndex: 0 }
+
+  // Active slide occupies 70% on mobile, 42% on desktop
+  const activeRatio = isMobile.value ? 0.7 : 0.42
+  const w0 = cw * activeRatio
+  const h0 = w0 * 0.625 // 16:10 ratio
+
+  const mobile = {
+    0: { x: 0, scale: 1, opacity: 1, width: w0, height: h0, zIndex: 30, blur: 0 },
+    1: {
+      x: cw * 0.46,
+      scale: 0.72,
+      opacity: 0.6,
+      width: w0 * 0.72,
+      height: h0 * 0.72,
+      zIndex: 20,
+      blur: 1,
+    },
+    '-1': {
+      x: -cw * 0.46,
+      scale: 0.72,
+      opacity: 0.6,
+      width: w0 * 0.72,
+      height: h0 * 0.72,
+      zIndex: 20,
+      blur: 1,
+    },
+  }
+
+  const desktop = {
     0: { x: 0, scale: 1, opacity: 1, width: w0, height: h0, zIndex: 30, blur: 0 },
     1: {
       x: cw * 0.3,
@@ -179,8 +223,7 @@ function getSlideStyle(index) {
     },
   }
 
-  const key = String(offset)
-  const c = configs[key]
+  const c = (isMobile.value ? mobile : desktop)[String(offset)]
 
   return {
     width: c.width + 'px',
