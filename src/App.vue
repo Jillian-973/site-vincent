@@ -106,10 +106,10 @@ const features = [
 
     <div class="flex flex-col items-center justify-center text-center gap-4 px-4">
       <h1>
-        <img src="./assets/mesotes.png" alt="Mesotes titre" class="sm:w-50 md:w-200" />
+        <img src="./assets/mesotes.png" alt="Mesotes titre" class="w-36 sm:w-50 md:w-200" />
       </h1>
       <div
-        class="rounded-2xl px-25 py-2"
+        class="rounded-2xl px-4 sm:px-10 md:px-25 py-2"
         style="
           background-color: rgb(100, 100, 100);
           border: 0px solid white;
