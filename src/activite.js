@@ -8,6 +8,9 @@ const router = createRouter({
   routes: [
     { path: '/', component: () => import('./views/ActiviteList.vue') },
     { path: '/projecteur', component: () => import('./views/projecteur.vue') },
+    { path: '/decorateur', component: () => import('./views/decorateur.vue') },
+    { path: '/dj', component: () => import('./views/dj.vue') },
+    { path: '/galerie', component: () => import('./views/galerie.vue') },
   ],
 })
 
