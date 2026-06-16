@@ -98,7 +98,7 @@ function faceStyle(activity) {
         <div
           v-for="activity in activities"
           :key="activity.id"
-          class="card-container h-64 sm:h-72"
+          class="card-container h-72 sm:h-80"
           :class="[
             activity.available ? 'cursor-pointer' : 'cursor-not-allowed opacity-60',
             flippedId === activity.id ? 'is-flipped' : '',
@@ -126,10 +126,14 @@ function faceStyle(activity) {
             >
               <div v-if="activity.image" class="absolute inset-0 bg-black/70" />
               <div class="relative z-10">
-                <h3 class="text-white font-bold text-lg sm:text-xl mb-1.5 sm:mb-2">
+                <h3
+                  class="text-white font-bold text-lg sm:text-xl mb-1.5 sm:mb-2 line-clamp-2 min-h-[3.5rem]"
+                >
                   {{ activity.title }}
                 </h3>
-                <p class="text-white/75 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                <p
+                  class="text-white/75 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3 min-h-[3.75rem] sm:min-h-[4.5rem]"
+                >
                   {{ activity.description }}
                 </p>
                 <div class="flex flex-wrap gap-2">
@@ -144,7 +148,7 @@ function faceStyle(activity) {
                   </span>
                 </div>
               </div>
-              <div class="relative z-10">
+              <div class="relative z-10 mt-3 sm:mt-4">
                 <span
                   v-if="activity.available"
                   class="inline-block bg-synthwave-magenta hover:opacity-90 text-white text-xs sm:text-sm font-semibold rounded-xl px-4 sm:px-5 py-2 transition-opacity"
