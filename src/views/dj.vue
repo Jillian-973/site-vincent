@@ -22,10 +22,6 @@ const themes = [
 const selectedTheme = ref(null)
 const wheelOpen = ref(false)
 
-function selectTheme(theme) {
-  selectedTheme.value = theme
-}
-
 function onWheelSelect(theme) {
   selectedTheme.value = theme
 }
@@ -123,32 +119,29 @@ const albumAiTools = [
       <section class="w-full max-w-3xl flex flex-col items-center gap-4">
         <h2 class="text-white font-bold text-lg sm:text-xl">Choisis un thème musical</h2>
 
-        <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+        <div class="inline-flex flex-col items-stretch gap-4">
+          <div class="grid grid-flow-col grid-rows-3 gap-3 sm:gap-4 justify-center">
+            <div
+              v-for="theme in themes"
+              :key="theme"
+              class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-xl sm:rounded-2xl border flex items-center justify-center text-center px-1.5 text-[11px] sm:text-xs md:text-sm font-semibold leading-tight"
+              :class="
+                selectedTheme === theme
+                  ? 'bg-synthwave-magenta border-synthwave-magenta text-white'
+                  : 'bg-white/5 border-white/20 text-white/70'
+              "
+            >
+              {{ theme }}
+            </div>
+          </div>
+
           <button
-            v-for="theme in themes"
-            :key="theme"
-            @click="selectTheme(theme)"
-            class="text-xs sm:text-sm font-semibold rounded-full px-4 py-2 border transition-colors"
-            :class="
-              selectedTheme === theme
-                ? 'bg-synthwave-magenta border-synthwave-magenta text-white'
-                : 'bg-white/5 border-white/20 text-white/70 hover:border-synthwave-magenta/50'
-            "
+            @click="wheelOpen = true"
+            class="w-full text-lg sm:text-xl md:text-2xl font-semibold rounded-xl sm:rounded-2xl px-6 py-4 sm:py-5 bg-electric-violet text-white hover:opacity-90 transition-opacity"
           >
-            {{ theme }}
+            🎡 Faire tourner la roue
           </button>
         </div>
-
-        <button
-          @click="wheelOpen = true"
-          class="text-sm font-semibold rounded-xl px-5 py-2.5 bg-electric-violet text-white hover:opacity-90 transition-opacity"
-        >
-          🎡 Faire tourner la roue
-        </button>
-
-        <p v-if="selectedTheme" class="text-white/70 text-sm">
-          Thème choisi : <span class="text-synthwave-magenta font-bold">{{ selectedTheme }}</span>
-        </p>
       </section>
 
       <!-- Description Suno -->
