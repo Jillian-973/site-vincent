@@ -3,6 +3,10 @@ import bgImage from './assets/bg.png'
 import Header from './components/header.vue'
 import bgImage2 from './assets/gradende.png'
 import Carousel from './components/carousel.vue'
+import projecteur2Img from './assets/projecteur 2.png'
+import decorateur2Img from './assets/decorateur 2.png'
+import dj2Img from './assets/DJ 2.png'
+import galerieImg from './assets/galerie.png'
 import { h } from 'vue'
 import Footer from './components/footer.vue'
 
@@ -70,6 +74,40 @@ const TrophyIcon = () =>
       }),
     ],
   )
+
+const activites = [
+  {
+    id: 'projecteur',
+    title: 'Le Projecteur',
+    image: projecteur2Img,
+    gradient:
+      'linear-gradient(to bottom right, var(--color-synthwave-magenta), var(--color-electric-violet))',
+    url: '/activite.html#/projecteur',
+  },
+  {
+    id: 'decorateur',
+    title: "Décorateur d'intérieur",
+    image: decorateur2Img,
+    gradient:
+      'linear-gradient(to bottom right, var(--color-electric-violet), var(--color-blue))',
+    url: '/activite.html#/decorateur',
+  },
+  {
+    id: 'dj',
+    title: 'Le DJ',
+    image: dj2Img,
+    gradient:
+      'linear-gradient(to bottom right, var(--color-neon-sunset), var(--color-synthwave-magenta))',
+    url: '/activite.html#/dj',
+  },
+  {
+    id: 'galerie',
+    title: "Galerie d'image",
+    image: galerieImg,
+    gradient: 'linear-gradient(to bottom right, #100923, #1a1040)',
+    url: '/activite.html#/galerie',
+  },
+]
 
 const features = [
   {

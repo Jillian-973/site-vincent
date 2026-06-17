@@ -14,13 +14,20 @@
         :style="getSlideStyle(index)"
         class="absolute overflow-hidden border-3 border-white cursor-pointer transition-all duration-500 ease-out"
         :class="isMobile ? 'rounded-xl' : 'rounded-2xl'"
-        @click="goTo(index)"
+        @click="handleSlideClick(index)"
       >
+        <!-- Image ou gradient fallback -->
         <img
+          v-if="slide.image"
           :src="slide.image"
           :alt="slide.title"
           class="w-full h-full object-cover"
           draggable="false"
+        />
+        <div
+          v-else
+          class="w-full h-full"
+          :style="{ background: slide.gradient || 'linear-gradient(to bottom right, #100923, #1a1040)' }"
         />
 
         <!-- Label on active slide only -->
@@ -55,7 +62,7 @@
         <button
           v-for="(_, i) in slides"
           :key="i"
-          @click="goTo(i)"
+          @click="goToSlide(i)"
           :class="[
             'rounded-full transition-all duration-300',
             i === current ? 'w-3 h-3 bg-pink-500' : 'w-2 h-2 bg-white/30 hover:bg-white/60',
@@ -82,11 +89,9 @@ const props = defineProps({
   slides: {
     type: Array,
     default: () => [
-      { id: 1, title: 'Activité 1', image: 'https://picsum.photos/seed/1/600/400' },
-      { id: 2, title: 'Activité 2', image: 'https://picsum.photos/seed/2/600/400' },
-      { id: 3, title: 'Activité 3', image: 'https://picsum.photos/seed/3/600/400' },
-      { id: 4, title: 'Activité 4', image: 'https://picsum.photos/seed/4/600/400' },
-      { id: 5, title: 'Activité 5', image: 'https://picsum.photos/seed/5/600/400' },
+      { id: 1, title: 'Activité 1', image: null, gradient: 'linear-gradient(to bottom right, #fa0881, #8802fc)', url: null },
+      { id: 2, title: 'Activité 2', image: null, gradient: 'linear-gradient(to bottom right, #8802fc, #3daeba)', url: null },
+      { id: 3, title: 'Activité 3', image: null, gradient: 'linear-gradient(to bottom right, #fc9d03, #fa0881)', url: null },
     ],
   },
 })
@@ -98,13 +103,11 @@ const total = computed(() => props.slides.length)
 const trackRef = ref(null)
 const containerWidth = ref(600)
 
-// Mobile = container width under 500px (80vw of ~390px iPhone = 312px)
 const isMobile = computed(() => containerWidth.value < 500)
 
-// Track height: taller ratio on mobile so slide isn't a tiny strip
 const trackHeight = computed(() =>
   isMobile.value
-    ? containerWidth.value * 0.58 // ~181px on iPhone 13
+    ? containerWidth.value * 0.58
     : containerWidth.value * 0.4,
 )
 
@@ -114,18 +117,43 @@ onMounted(() => {
     containerWidth.value = entry.contentRect.width
   })
   if (trackRef.value) ro.observe(trackRef.value)
+  startAutoplay()
 })
-onBeforeUnmount(() => ro?.disconnect())
+onBeforeUnmount(() => {
+  ro?.disconnect()
+  stopAutoplay()
+})
+
+// ── Autoplay ───────────────────────────────────────────────────────
+let autoplay = null
+
+function startAutoplay() {
+  if (autoplay) clearInterval(autoplay)
+  autoplay = setInterval(() => {
+    current.value = (current.value + 1) % total.value
+  }, 3000)
+}
+
+function stopAutoplay() {
+  if (autoplay) { clearInterval(autoplay); autoplay = null }
+}
 
 // ── Navigation ─────────────────────────────────────────────────────
-function goTo(index) {
+function goToSlide(index) {
   current.value = (index + total.value) % total.value
+  startAutoplay()
 }
-function next() {
-  goTo(current.value + 1)
-}
-function prev() {
-  goTo(current.value - 1)
+
+function next() { goToSlide(current.value + 1) }
+function prev() { goToSlide(current.value - 1) }
+
+function handleSlideClick(index) {
+  if (index === current.value) {
+    const url = props.slides[index]?.url
+    if (url) window.location.href = url
+  } else {
+    goToSlide(index)
+  }
 }
 
 // ── Touch swipe ────────────────────────────────────────────────────
@@ -152,75 +180,25 @@ function getSlideStyle(index) {
   const abs = Math.abs(offset)
   const cw = containerWidth.value
 
-  // On mobile only show ±1 neighbours — ±2 are hidden
   const maxVisible = isMobile.value ? 1 : 2
   if (abs > maxVisible) return { opacity: 0, pointerEvents: 'none', zIndex: 0 }
 
-  // Active slide occupies 70% on mobile, 42% on desktop
   const activeRatio = isMobile.value ? 0.7 : 0.42
   const w0 = cw * activeRatio
-  const h0 = w0 * 0.625 // 16:10 ratio
+  const h0 = w0 * 0.625
 
   const mobile = {
-    0: { x: 0, scale: 1, opacity: 1, width: w0, height: h0, zIndex: 30, blur: 0 },
-    1: {
-      x: cw * 0.46,
-      scale: 0.72,
-      opacity: 0.6,
-      width: w0 * 0.72,
-      height: h0 * 0.72,
-      zIndex: 20,
-      blur: 1,
-    },
-    '-1': {
-      x: -cw * 0.46,
-      scale: 0.72,
-      opacity: 0.6,
-      width: w0 * 0.72,
-      height: h0 * 0.72,
-      zIndex: 20,
-      blur: 1,
-    },
+    0:  { x: 0,         scale: 1,    opacity: 1,   width: w0,        height: h0,        zIndex: 30, blur: 0 },
+    1:  { x:  cw * 0.46, scale: 0.72, opacity: 0.6, width: w0 * 0.72, height: h0 * 0.72, zIndex: 20, blur: 1 },
+    '-1': { x: -cw * 0.46, scale: 0.72, opacity: 0.6, width: w0 * 0.72, height: h0 * 0.72, zIndex: 20, blur: 1 },
   }
 
   const desktop = {
-    0: { x: 0, scale: 1, opacity: 1, width: w0, height: h0, zIndex: 30, blur: 0 },
-    1: {
-      x: cw * 0.3,
-      scale: 0.78,
-      opacity: 0.7,
-      width: w0 * 0.78,
-      height: h0 * 0.78,
-      zIndex: 20,
-      blur: 1,
-    },
-    '-1': {
-      x: -cw * 0.3,
-      scale: 0.78,
-      opacity: 0.7,
-      width: w0 * 0.78,
-      height: h0 * 0.78,
-      zIndex: 20,
-      blur: 1,
-    },
-    2: {
-      x: cw * 0.52,
-      scale: 0.6,
-      opacity: 0.35,
-      width: w0 * 0.6,
-      height: h0 * 0.6,
-      zIndex: 10,
-      blur: 2,
-    },
-    '-2': {
-      x: -cw * 0.52,
-      scale: 0.6,
-      opacity: 0.35,
-      width: w0 * 0.6,
-      height: h0 * 0.6,
-      zIndex: 10,
-      blur: 2,
-    },
+    0:  { x: 0,          scale: 1,    opacity: 1,    width: w0,        height: h0,        zIndex: 30, blur: 0 },
+    1:  { x:  cw * 0.3,  scale: 0.78, opacity: 0.7,  width: w0 * 0.78, height: h0 * 0.78, zIndex: 20, blur: 1 },
+    '-1': { x: -cw * 0.3, scale: 0.78, opacity: 0.7,  width: w0 * 0.78, height: h0 * 0.78, zIndex: 20, blur: 1 },
+    2:  { x:  cw * 0.52, scale: 0.6,  opacity: 0.35, width: w0 * 0.6,  height: h0 * 0.6,  zIndex: 10, blur: 2 },
+    '-2': { x: -cw * 0.52, scale: 0.6, opacity: 0.35, width: w0 * 0.6, height: h0 * 0.6,  zIndex: 10, blur: 2 },
   }
 
   const c = (isMobile.value ? mobile : desktop)[String(offset)]

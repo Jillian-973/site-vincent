@@ -3,6 +3,10 @@ import Header from '../components/header.vue'
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import bgImage from '../assets/gradende.png'
+import projecteurImg from '../assets/projecteur.png'
+import decorateurImg from '../assets/decorateur.png'
+import djImg from '../assets/DJ.png'
+import galerieImg from '../assets/galerie.png'
 
 const router = useRouter()
 
@@ -16,8 +20,8 @@ const activities = [
       'Échangez avec un assistant conversationnel pour structurer votre projet IA et repartez avec une synthèse claire et exploitable.',
     duration: '15–20 min',
     tag: 'Cadrage de projet',
-    gradient: 'from-synthwave-magenta to-electric-violet',
-    image: null,
+    accentColor: '#8802FC',
+    image: projecteurImg,
     available: true,
   },
   {
@@ -26,8 +30,8 @@ const activities = [
     description: 'Crée une pièce entière grâce à une IA : décris ton style et laisse la magie opérer.',
     duration: '~10 min',
     tag: "Génération d'image",
-    gradient: 'from-electric-violet to-blue',
-    image: null,
+    accentColor: '#FC9D03',
+    image: decorateurImg,
     available: true,
   },
   {
@@ -36,8 +40,8 @@ const activities = [
     description: "Compose une musique avec Suno et imagine la pochette de ton album avec une IA.",
     duration: '~20 min',
     tag: 'Création musicale',
-    gradient: 'from-neon-sunset to-synthwave-magenta',
-    image: null,
+    accentColor: '#FA0881',
+    image: djImg,
     available: true,
   },
 ]
@@ -68,9 +72,10 @@ function handleClick(activity) {
 }
 
 function faceStyle(activity) {
-  return activity.image
-    ? { backgroundImage: `url(${activity.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
-    : {}
+  if (activity.image) {
+    return { backgroundImage: `url(${activity.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+  }
+  return { background: `linear-gradient(to bottom right, ${activity.accentColor}, ${activity.accentColor}88)` }
 }
 </script>
 
@@ -93,12 +98,12 @@ function faceStyle(activity) {
         </p>
       </div>
 
-      <!-- 4 activités par ligne sur grand écran, 2 sur tablette, 1 sur mobile -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full max-w-6xl">
+      <!-- 3 activités par ligne sur grand écran, 2 sur tablette, 1 sur mobile -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 w-full max-w-6xl">
         <div
           v-for="activity in activities"
           :key="activity.id"
-          class="card-container h-72 sm:h-80"
+          class="card-container h-[22rem] sm:h-[27rem]"
           :class="[
             activity.available ? 'cursor-pointer' : 'cursor-not-allowed opacity-60',
             flippedId === activity.id ? 'is-flipped' : '',
@@ -109,11 +114,9 @@ function faceStyle(activity) {
             <!-- Recto : image (si dispo) ou gradient + titre -->
             <div
               class="card-face rounded-2xl flex items-end p-4 sm:p-5"
-              :class="!activity.image ? `bg-gradient-to-br ${activity.gradient}` : ''"
               :style="faceStyle(activity)"
             >
-              <div v-if="activity.image" class="absolute inset-0 bg-black/30 rounded-2xl" />
-              <span class="relative z-10 text-white text-lg sm:text-xl font-bold drop-shadow-lg">
+              <span class="relative z-10 text-white text-lg sm:text-xl font-bold drop-shadow-lg" style="font-family: 'Orbitron', sans-serif;">
                 {{ activity.title }}
               </span>
             </div>
@@ -127,23 +130,24 @@ function faceStyle(activity) {
               <div v-if="activity.image" class="absolute inset-0 bg-black/70" />
               <div class="relative z-10">
                 <h3
-                  class="text-white font-bold text-lg sm:text-xl mb-1.5 sm:mb-2 line-clamp-2 min-h-[3.5rem]"
+                  class="text-white font-bold text-lg sm:text-xl mb-1.5 sm:mb-2 line-clamp-2"
                 >
                   {{ activity.title }}
                 </h3>
                 <p
-                  class="text-white/75 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 line-clamp-3 min-h-[3.75rem] sm:min-h-[4.5rem]"
+                  class="text-white/75 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4"
                 >
                   {{ activity.description }}
                 </p>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-col items-start gap-2">
                   <span
                     v-if="activity.tag"
-                    class="text-xs bg-synthwave-magenta/20 text-pink-300 border border-synthwave-magenta/30 rounded-full px-3 py-1"
+                    class="text-sm sm:text-base text-white rounded-full px-3 py-1.5"
+                    :style="{ backgroundColor: activity.accentColor + '33', border: `1px solid ${activity.accentColor}66` }"
                   >
                     {{ activity.tag }}
                   </span>
-                  <span class="text-xs bg-white/10 text-white/60 border border-white/20 rounded-full px-3 py-1">
+                  <span class="text-sm sm:text-base bg-white/10 text-white/60 border border-white/20 rounded-full px-3 py-1.5">
                     ⏱ {{ activity.duration }}
                   </span>
                 </div>
@@ -151,7 +155,8 @@ function faceStyle(activity) {
               <div class="relative z-10 mt-3 sm:mt-4">
                 <span
                   v-if="activity.available"
-                  class="inline-block bg-synthwave-magenta hover:opacity-90 text-white text-xs sm:text-sm font-semibold rounded-xl px-4 sm:px-5 py-2 transition-opacity"
+                  class="inline-block text-white text-sm sm:text-base font-semibold rounded-xl px-5 sm:px-6 py-2.5 transition-opacity hover:opacity-90"
+                  :style="{ backgroundColor: activity.accentColor }"
                 >
                   Commencer →
                 </span>
@@ -167,18 +172,22 @@ function faceStyle(activity) {
         </div>
       </div>
 
-      <!-- Galerie d'image : bloc unique, pas de flip, verso uniquement -->
+      <!-- Galerie d'image : bloc unique, pas de flip -->
       <div
-        class="w-full max-w-6xl mt-6 sm:mt-10 rounded-2xl border border-white/20 bg-retrogrid-black/80 backdrop-blur-md p-5 sm:p-8 cursor-pointer flex flex-col sm:flex-row items-center sm:items-center justify-between gap-4 hover:border-synthwave-magenta/40 transition-colors"
+        class="relative overflow-hidden w-full max-w-6xl mt-6 sm:mt-10 rounded-2xl border border-white/20 min-h-[220px] sm:min-h-[300px] cursor-pointer flex flex-col justify-end hover:border-synthwave-magenta/40 transition-colors"
+        :style="{ backgroundImage: `url(${galerieImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
         @click="router.push('/galerie')"
       >
-        <div class="text-center sm:text-left">
-          <h3 class="text-white font-bold text-xl sm:text-2xl mb-1.5">Galerie d'image</h3>
-          <p class="text-white/70 text-sm sm:text-base">Explorez les créations de la communauté.</p>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 p-5 sm:p-8">
+          <div>
+            <h3 class="text-white font-bold text-xl sm:text-2xl mb-1.5">Galerie d'image</h3>
+            <p class="text-white/70 text-sm sm:text-base">Explorez les créations de la communauté.</p>
+          </div>
+          <span class="shrink-0 text-xs sm:text-sm text-white/40 border border-white/15 rounded-xl px-4 py-2">
+            Bientôt disponible
+          </span>
         </div>
-        <span class="shrink-0 text-xs sm:text-sm text-white/40 border border-white/15 rounded-xl px-4 py-2">
-          Bientôt disponible
-        </span>
       </div>
     </main>
   </div>
