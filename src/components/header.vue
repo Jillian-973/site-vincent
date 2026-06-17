@@ -1,5 +1,5 @@
 <template>
-  <nav class="py-4 px-6 grid grid-cols-3 items-center bg-retrogrid-black">
+  <nav class="py-4 px-6 grid grid-cols-3 items-center">
     <a href="/main">
       <img src="../assets/logo.png" alt="Mésotès" class="h-12 sm:h-16" />
     </a>

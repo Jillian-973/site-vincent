@@ -16,7 +16,6 @@ const themes = [
   'Synthwave',
   'Lo-Fi',
   'Cinématique',
-  'Ambient',
 ]
 
 const selectedTheme = ref(null)
@@ -33,68 +32,100 @@ const musicAiTools = [
     description:
       "Génère un morceau complet (paroles, voix, instrumentation) à partir d'un simple prompt textuel.",
     url: 'https://suno.com',
-  },
-  {
-    id: 'udio',
-    name: 'Udio',
-    description:
-      'Création musicale par IA avec un rendu audio très réaliste, idéal pour explorer un style rapidement.',
-    url: 'https://udio.com',
-  },
-  {
-    id: 'aiva',
-    name: 'AIVA',
-    description: 'IA spécialisée dans la composition de musique instrumentale et de bandes sonores.',
-    url: 'https://www.aiva.ai',
-  },
-  {
-    id: 'soundraw',
-    name: 'Soundraw',
-    description: 'Génère de la musique libre de droits, personnalisable par genre et ambiance.',
-    url: 'https://soundraw.io',
+    image: 'https://www.google.com/s2/favicons?domain=suno.com&sz=256',
   },
 ]
 
 const pochetteAiTools = [
   {
-    id: 'midjourney',
-    name: 'Midjourney',
-    description: "Génère des visuels artistiques détaillés, idéal pour une pochette d'album originale.",
-    url: 'https://www.midjourney.com',
+    id: 'gemini',
+    name: 'Gemini',
+    description:
+      "Décris l'ambiance de ta musique et laisse Gemini générer des concepts visuels pour ta pochette d'album.",
+    url: 'https://gemini.google.com',
+    image: 'https://www.google.com/s2/favicons?domain=gemini.google.com&sz=256',
   },
   {
-    id: 'dalle',
-    name: 'DALL·E',
-    description: "Crée une image à partir d'une simple description textuelle, rapide et accessible.",
-    url: 'https://openai.com/dall-e-3',
+    id: 'chatgpt',
+    name: 'ChatGPT',
+    description:
+      "Utilise ChatGPT pour concevoir le visuel de ta pochette, de l'idée initiale à la description détaillée.",
+    url: 'https://chatgpt.com',
+    image: 'https://images.seeklogo.com/logo-png/46/1/chatgpt-logo-png_seeklogo-465219.png',
+    bgColor: '#ffffff',
   },
   {
-    id: 'leonardo',
-    name: 'Leonardo.Ai',
-    description: "Plateforme de génération d'images IA avec de nombreux styles artistiques prédéfinis.",
-    url: 'https://leonardo.ai',
+    id: 'copilot',
+    name: 'Copilot',
+    description:
+      "Copilot Designer génère des visuels artistiques pour ta pochette à partir d'une description textuelle.",
+    url: 'https://copilot.microsoft.com',
+    image: 'https://kerv.com/app/uploads/2024/11/Microsoft-Copilot-Logo-360x203.png',
+    bgColor: '#ffffff',
+  },
+  {
+    id: 'mistral',
+    name: 'Mistral',
+    description:
+      "Décris l'univers visuel de ton morceau et Mistral te propose des concepts créatifs pour ta pochette.",
+    url: 'https://chat.mistral.ai',
+    image: 'https://www.google.com/s2/favicons?domain=mistral.ai&sz=256',
   },
 ]
 
 const albumAiTools = [
   {
-    id: 'canva',
-    name: 'Canva (Magic Media)',
-    description: "Crée facilement des visuels d'album et templates avec génération d'images intégrée.",
-    url: 'https://www.canva.com/ai-image-generator/',
-  },
-  {
-    id: 'firefly',
-    name: 'Adobe Firefly',
-    description: "IA générative d'Adobe pour créer des visuels d'album professionnels.",
-    url: 'https://firefly.adobe.com',
-  },
-  {
-    id: 'ideogram',
-    name: 'Ideogram',
+    id: 'chatgpt',
+    name: 'ChatGPT',
     description:
-      "IA de génération d'images reconnue pour son rendu de texte et typographies sur les visuels.",
-    url: 'https://ideogram.ai',
+      'Génère des descriptions visuelles détaillées et utilise DALL·E intégré pour créer les visuels de ton album.',
+    url: 'https://chatgpt.com',
+    image: 'https://images.seeklogo.com/logo-png/46/1/chatgpt-logo-png_seeklogo-465219.png',
+    bgColor: '#ffffff',
+  },
+  {
+    id: 'copilot',
+    name: 'Copilot',
+    description:
+      "Copilot combine texte et image pour t'aider à concevoir un album cohérent et visuellement percutant.",
+    url: 'https://copilot.microsoft.com',
+    image: 'https://kerv.com/app/uploads/2024/11/Microsoft-Copilot-Logo-360x203.png',
+    bgColor: '#ffffff',
+  },
+  {
+    id: 'perplexity',
+    name: 'Perplexity',
+    description:
+      'Trouve des inspirations visuelles, des références artistiques et des concepts originaux pour ton album.',
+    url: 'https://www.perplexity.ai',
+    image: 'https://www.google.com/s2/favicons?domain=perplexity.ai&sz=256',
+    bgColor: '#ffffff',
+  },
+  {
+    id: 'mistral',
+    name: 'Mistral',
+    description:
+      "Conceptualise l'identité visuelle complète de ton album avec des descriptions précises et créatives.",
+    url: 'https://chat.mistral.ai',
+    image: 'https://www.google.com/s2/favicons?domain=mistral.ai&sz=256',
+  },
+  {
+    id: 'claude',
+    name: 'Claude',
+    description:
+      "Claude t'aide à définir et articuler le concept visuel de ton album avec un sens du détail remarquable.",
+    url: 'https://claude.ai',
+    image: 'https://www.google.com/s2/favicons?domain=claude.ai&sz=256',
+    bgColor: '#ffffff',
+  },
+  {
+    id: 'grok',
+    name: 'Grok',
+    description:
+      "Grok de xAI génère des idées créatives et décalées pour l'univers visuel de ton album.",
+    url: 'https://grok.com',
+    image: 'https://www.google.com/s2/favicons?domain=grok.com&sz=256',
+    bgColor: '#ffffff',
   },
 ]
 </script>
@@ -110,8 +141,8 @@ const albumAiTools = [
       <div class="text-center max-w-2xl px-2">
         <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">Le DJ</h1>
         <p class="text-white/60 text-sm sm:text-base leading-relaxed">
-          La consigne : <span class="text-white font-semibold">crée une musique avec Suno</span>, génère
-          une musique avec l'IA et la pochette de l'album avec une IA.
+          La consigne : <span class="text-white font-semibold">crée une musique avec Suno</span>,
+          génère une musique avec l'IA et la pochette de l'album avec une IA.
         </p>
       </div>
 
@@ -135,6 +166,9 @@ const albumAiTools = [
             </div>
           </div>
 
+          <p class="text-center text-white/50 text-sm sm:text-base italic">
+            Du mal à choisir ? Laisse le hasard décider !
+          </p>
           <button
             @click="wheelOpen = true"
             class="w-full text-lg sm:text-xl md:text-2xl font-semibold rounded-xl sm:rounded-2xl px-6 py-4 sm:py-5 bg-electric-violet text-white hover:opacity-90 transition-opacity"
@@ -148,10 +182,10 @@ const albumAiTools = [
       <section class="w-full max-w-2xl text-center px-2">
         <h2 class="text-white font-bold text-lg sm:text-xl mb-2">C'est quoi Suno ?</h2>
         <p class="text-white/60 text-sm sm:text-base leading-relaxed">
-          Suno est une intelligence artificielle qui génère des morceaux de musique complets — paroles,
-          voix et instrumentation — à partir d'une simple description textuelle. Indique un style, une
-          ambiance ou un thème pour obtenir une piste originale en quelques secondes, sans aucune
-          connaissance musicale requise.
+          Suno est une intelligence artificielle qui génère des morceaux de musique complets —
+          paroles, voix et instrumentation — à partir d'une simple description textuelle. Indique un
+          style, une ambiance ou un thème pour obtenir une piste originale en quelques secondes,
+          sans aucune connaissance musicale requise.
         </p>
       </section>
 
@@ -162,13 +196,15 @@ const albumAiTools = [
       </section>
 
       <!-- Carrousels pochette / album -->
-      <section class="w-full flex flex-col lg:flex-row items-center lg:items-start justify-center gap-10 lg:gap-6">
+      <section
+        class="w-full flex flex-col lg:flex-row items-center lg:items-start justify-center gap-10 lg:gap-6"
+      >
         <div class="w-full flex flex-col items-center gap-4">
           <h2 class="text-white font-bold text-lg sm:text-xl">IA pour la pochette</h2>
           <AiCarousel :items="pochetteAiTools" />
         </div>
         <div class="w-full flex flex-col items-center gap-4">
-          <h2 class="text-white font-bold text-lg sm:text-xl">IA pour l'album</h2>
+          <h2 class="text-white font-bold text-lg sm:text-xl">IA pour le texte</h2>
           <AiCarousel :items="albumAiTools" />
         </div>
       </section>

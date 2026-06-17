@@ -5,31 +5,38 @@ import AiCarousel from '../components/AiCarousel.vue'
 
 const aiTools = [
   {
-    id: 'interior-ai',
-    name: 'Interior AI',
+    id: 'gemini',
+    name: 'Gemini',
     description:
-      "Transforme la photo d'une pièce vide en design complet selon le style choisi (scandinave, industriel, minimaliste…).",
-    url: 'https://interiorai.com',
+      'Décris ta pièce idéale et laisse Gemini générer des idées de décoration personnalisées, des couleurs aux matériaux.',
+    url: 'https://gemini.google.com',
+    image: 'https://www.google.com/s2/favicons?domain=gemini.google.com&sz=256',
   },
   {
-    id: 'roomgpt',
-    name: 'RoomGPT',
+    id: 'chatgpt',
+    name: 'ChatGPT',
     description:
-      "Génère un nouveau design de pièce à partir d'une simple photo, gratuit et rapide à utiliser.",
-    url: 'https://www.roomgpt.io',
+      'Converse avec ChatGPT pour concevoir ton espace étape par étape, du choix du style aux recommandations de mobilier.',
+    url: 'https://chatgpt.com',
+    image: 'https://images.seeklogo.com/logo-png/46/1/chatgpt-logo-png_seeklogo-465219.png',
+    bgColor: '#ffffff',
   },
   {
-    id: 'reimagine-home',
-    name: 'REimagine Home',
+    id: 'copilot',
+    name: 'Copilot',
     description:
-      "IA spécialisée dans la rénovation et la décoration d'intérieur avec un rendu très réaliste.",
-    url: 'https://reimaginehome.ai',
+      "Microsoft Copilot t'aide à visualiser et affiner l'aménagement de ta pièce à travers un dialogue naturel.",
+    url: 'https://copilot.microsoft.com',
+    image: 'https://kerv.com/app/uploads/2024/11/Microsoft-Copilot-Logo-360x203.png',
+    bgColor: '#ffffff',
   },
   {
-    id: 'planner5d',
-    name: 'Planner 5D',
-    description: 'Outil de conception 3D assisté par IA pour aménager une pièce de A à Z.',
-    url: 'https://planner5d.com',
+    id: 'mistral',
+    name: 'Mistral',
+    description:
+      "Modèle IA européen performant, Mistral t'accompagne pour imaginer et décrire ton intérieur avec précision.",
+    url: 'https://chat.mistral.ai',
+    image: 'https://www.google.com/s2/favicons?domain=mistral.ai&sz=256',
   },
 ]
 </script>
@@ -46,8 +53,8 @@ const aiTools = [
           Décorateur d'intérieur
         </h1>
         <p class="text-white/60 text-sm sm:text-base leading-relaxed">
-          La consigne : <span class="text-white font-semibold">crée une pièce avec une IA</span>. Choisis
-          un outil ci-dessous, décris ton style et laisse l'IA imaginer ta pièce.
+          La consigne : <span class="text-white font-semibold">crée une pièce avec une IA</span>.
+          Choisis un outil ci-dessous, décris ton style et laisse l'IA imaginer ta pièce.
         </p>
       </div>
 

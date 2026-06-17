@@ -1,7 +1,6 @@
 <script setup>
 import bgImage from './assets/bg.png'
 import Header from './components/header.vue'
-import bgImage2 from './assets/gradende.png'
 import Carousel from './components/carousel.vue'
 import projecteur2Img from './assets/projecteur 2.png'
 import decorateur2Img from './assets/decorateur 2.png'
@@ -52,7 +51,7 @@ const activites = [
 
 <template>
   <div
-    class="min-h-screen bg-cover bg-top bg-no-repeat flex flex-col justify-between"
+    class="relative min-h-screen bg-cover bg-top bg-no-repeat flex flex-col justify-between"
     :style="{ backgroundImage: `url(${bgImage})` }"
   >
     <header>
@@ -82,12 +81,14 @@ const activites = [
         class="h-14 sm:h-16 md:h-20 cursor-pointer animate-bounce"
       />
     </div>
+
+    <!-- Dégradé de transition vers le noir -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-black pointer-events-none"
+    />
   </div>
 
-  <div
-    class="text-center min-h-screen bg-cover bg-top bg-no-repeat flex flex-col -mt-16 sm:-mt-20 md:-mt-30 pt-16 sm:pt-20 md:pt-30"
-    :style="{ backgroundImage: `url(${bgImage2})` }"
-  >
+  <div class="text-center min-h-screen flex flex-col" style="background-color: #000000">
     <div class="py-8 md:py-12 px-4">
       <h2 id="activites" class="text-4xl sm:text-6xl md:text-[80px] font-bold">
         Nos activités pédagogiques

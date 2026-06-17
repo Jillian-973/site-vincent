@@ -2,7 +2,6 @@
 import Header from '../components/header.vue'
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
-import bgImage from '../assets/gradende.png'
 import projecteurImg from '../assets/projecteur.png'
 import decorateurImg from '../assets/decorateur.png'
 import djImg from '../assets/DJ.png'
@@ -27,7 +26,8 @@ const activities = [
   {
     id: 'decorateur',
     title: "Décorateur d'intérieur",
-    description: 'Crée une pièce entière grâce à une IA : décris ton style et laisse la magie opérer.',
+    description:
+      'Crée une pièce entière grâce à une IA : décris ton style et laisse la magie opérer.',
     duration: '~10 min',
     tag: "Génération d'image",
     accentColor: 'var(--color-neon-sunset)',
@@ -37,7 +37,7 @@ const activities = [
   {
     id: 'dj',
     title: 'Le DJ',
-    description: "Compose une musique avec Suno et imagine la pochette de ton album avec une IA.",
+    description: 'Compose une musique avec Suno et imagine la pochette de ton album avec une IA.',
     duration: '~20 min',
     tag: 'Création musicale',
     accentColor: 'var(--color-synthwave-magenta)',
@@ -73,28 +73,29 @@ function handleClick(activity) {
 
 function faceStyle(activity) {
   if (activity.image) {
-    return { backgroundImage: `url(${activity.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+    return {
+      backgroundImage: `url(${activity.image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }
   }
-  return { background: `linear-gradient(to bottom right, ${activity.accentColor}, color-mix(in srgb, ${activity.accentColor} 53%, transparent))` }
+  return {
+    background: `linear-gradient(to bottom right, ${activity.accentColor}, color-mix(in srgb, ${activity.accentColor} 53%, transparent))`,
+  }
 }
 </script>
 
 <template>
-  <div
-    class="min-h-screen bg-cover bg-top bg-no-repeat flex flex-col"
-    :style="{ backgroundImage: `url(${bgImage})` }"
-  >
+  <div class="min-h-screen bg-retrogrid-black flex flex-col">
     <header>
       <Header />
     </header>
 
     <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12">
       <div class="text-center mb-8 sm:mb-14">
-        <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-2 sm:mb-3">
-          Nos activités
-        </h1>
-        <p class="text-white/70 text-sm sm:text-lg">
-          Choisissez une activité et commencez à apprendre
+        <p class="text-white text-sm sm:text-lg text-[40px]" style="font-family: orbitron">
+          Ci-dessous se trouve l’ensemble des ressources pédagogiques conçues par le formateur et
+          produites par l’équipe d’étudiants.
         </p>
       </div>
 
@@ -116,7 +117,10 @@ function faceStyle(activity) {
               class="card-face rounded-2xl flex items-end p-4 sm:p-5"
               :style="faceStyle(activity)"
             >
-              <span class="relative z-10 text-white text-lg sm:text-xl font-bold drop-shadow-lg" style="font-family: 'Orbitron', sans-serif;">
+              <span
+                class="relative z-10 text-white text-lg sm:text-xl font-bold drop-shadow-lg"
+                style="font-family: 'Orbitron', sans-serif"
+              >
                 {{ activity.title }}
               </span>
             </div>
@@ -129,25 +133,26 @@ function faceStyle(activity) {
             >
               <div v-if="activity.image" class="absolute inset-0 bg-black/70" />
               <div class="relative z-10">
-                <h3
-                  class="text-white font-bold text-lg sm:text-xl mb-1.5 sm:mb-2 line-clamp-2"
-                >
+                <h3 class="text-white font-bold text-lg sm:text-xl mb-1.5 sm:mb-2 line-clamp-2">
                   {{ activity.title }}
                 </h3>
-                <p
-                  class="text-white/75 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4"
-                >
+                <p class="text-white/75 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
                   {{ activity.description }}
                 </p>
                 <div class="flex flex-col items-start gap-2">
                   <span
                     v-if="activity.tag"
                     class="text-sm sm:text-base text-white rounded-full px-3 py-1.5"
-                    :style="{ backgroundColor: `color-mix(in srgb, ${activity.accentColor} 20%, transparent)`, border: `1px solid color-mix(in srgb, ${activity.accentColor} 40%, transparent)` }"
+                    :style="{
+                      backgroundColor: `color-mix(in srgb, ${activity.accentColor} 20%, transparent)`,
+                      border: `1px solid color-mix(in srgb, ${activity.accentColor} 40%, transparent)`,
+                    }"
                   >
                     {{ activity.tag }}
                   </span>
-                  <span class="text-sm sm:text-base bg-white/10 text-white/60 border border-white/20 rounded-full px-3 py-1.5">
+                  <span
+                    class="text-sm sm:text-base bg-white/10 text-white/60 border border-white/20 rounded-full px-3 py-1.5"
+                  >
                     ⏱ {{ activity.duration }}
                   </span>
                 </div>
@@ -175,16 +180,26 @@ function faceStyle(activity) {
       <!-- Galerie d'image : bloc unique, pas de flip -->
       <div
         class="relative overflow-hidden w-full max-w-6xl mt-6 sm:mt-10 rounded-2xl border border-white/20 min-h-[220px] sm:min-h-[300px] cursor-pointer flex flex-col justify-end hover:border-synthwave-magenta/40 transition-colors"
-        :style="{ backgroundImage: `url(${galerieImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
+        :style="{
+          backgroundImage: `url(${galerieImg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }"
         @click="router.push('/galerie')"
       >
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-        <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 p-5 sm:p-8">
+        <div
+          class="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 p-5 sm:p-8"
+        >
           <div>
             <h3 class="text-white font-bold text-xl sm:text-2xl mb-1.5">Galerie d'image</h3>
-            <p class="text-white/70 text-sm sm:text-base">Explorez les créations de la communauté.</p>
+            <p class="text-white/70 text-sm sm:text-base">
+              Explorez les créations de la communauté.
+            </p>
           </div>
-          <span class="shrink-0 text-xs sm:text-sm text-white/40 border border-white/15 rounded-xl px-4 py-2">
+          <span
+            class="shrink-0 text-xs sm:text-sm text-white/40 border border-white/15 rounded-xl px-4 py-2"
+          >
             Bientôt disponible
           </span>
         </div>

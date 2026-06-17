@@ -48,11 +48,11 @@ onBeforeUnmount(stopAutoplay)
 
 <template>
   <div class="w-full flex flex-col items-center gap-4">
-    <!-- Cadre paysage, format compact -->
-    <div class="relative w-full sm:w-[65%] md:w-[48%] lg:w-[38%] max-w-[360px]">
+    <!-- Cadre format portrait élargi pour lisibilité -->
+    <div class="relative w-full sm:w-[75%] md:w-[55%] lg:w-[45%] max-w-[380px]">
       <div
         class="relative overflow-hidden rounded-2xl border border-white/15"
-        style="aspect-ratio: 16 / 9"
+        style="aspect-ratio: 4 / 3"
       >
         <div
           class="flex h-full transition-transform duration-500 ease-out"
@@ -61,30 +61,38 @@ onBeforeUnmount(stopAutoplay)
           <div
             v-for="(item, i) in items"
             :key="item.id"
-            class="relative w-full h-full shrink-0 flex flex-col items-center justify-center text-center p-3 sm:p-4 gap-1.5 sm:gap-2"
-            :class="!item.image ? `bg-gradient-to-br ${gradientFor(i)}` : ''"
-            :style="
-              item.image
+            class="relative w-full h-full shrink-0 flex flex-col items-center justify-center text-center p-5 sm:p-7 gap-3 sm:gap-4"
+            :class="!item.image && !item.bgColor ? `bg-gradient-to-br ${gradientFor(i)}` : ''"
+            :style="{
+              ...(item.image
                 ? {
                     backgroundImage: `url(${item.image})`,
                     backgroundSize: 'contain',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                   }
-                : {}
-            "
+                : {}),
+              ...(item.bgColor ? { backgroundColor: item.bgColor } : {}),
+            }"
           >
-            <!-- Overlay pour la lisibilité du texte -->
-            <div class="absolute inset-0 bg-black/55" />
+            <!-- Overlay sombre sur fond foncé, blanc sur fond blanc pour lisibilité du texte -->
+            <div v-if="item.bgColor !== '#ffffff'" class="absolute inset-0 bg-black/55" />
+            <div v-else class="absolute inset-0 bg-white/70" />
 
-            <div class="relative z-10 flex flex-col items-center gap-1.5 sm:gap-2 max-w-[88%]">
-              <h3 class="text-white font-bold text-sm sm:text-base leading-tight">{{ item.name }}</h3>
-              <p class="text-white/80 text-[11px] sm:text-xs leading-relaxed">{{ item.description }}</p>
+            <div class="relative z-10 flex flex-col items-center gap-3 sm:gap-4 max-w-[90%]">
+              <h3
+                class="font-extrabold leading-tight"
+                :class="item.bgColor === '#ffffff' ? 'text-black text-2xl sm:text-3xl' : 'text-white text-xl sm:text-2xl'"
+              >{{ item.name }}</h3>
+              <p
+                class="leading-relaxed"
+                :class="item.bgColor === '#ffffff' ? 'text-black font-semibold text-base sm:text-lg' : 'text-white/80 text-sm sm:text-base'"
+              >{{ item.description }}</p>
               <a
                 :href="item.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-block bg-synthwave-magenta hover:opacity-90 text-white text-[11px] sm:text-xs font-semibold rounded-lg px-3 py-1.5 transition-opacity"
+                class="inline-block bg-electric-violet hover:opacity-90 text-white text-sm sm:text-base font-semibold rounded-xl px-5 py-2.5 transition-opacity"
               >
                 Essayer cette IA →
               </a>
@@ -95,23 +103,23 @@ onBeforeUnmount(stopAutoplay)
     </div>
 
     <!-- Navigation -->
-    <div class="flex items-center gap-5 sm:gap-6">
+    <div class="flex items-center gap-6 sm:gap-8">
       <button
         @click="prev(); restartAutoplay()"
-        class="text-white opacity-70 hover:opacity-100 transition-opacity text-lg sm:text-xl leading-none p-2"
+        class="text-white opacity-70 hover:opacity-100 transition-opacity text-2xl sm:text-3xl leading-none p-3"
         aria-label="Précédent"
       >
         ←
       </button>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-3">
         <button
           v-for="(_, i) in items"
           :key="i"
           @click="goTo(i); restartAutoplay()"
           :class="[
             'rounded-full transition-all duration-300',
-            i === current ? 'w-3 h-3 bg-synthwave-magenta' : 'w-2 h-2 bg-white/30 hover:bg-white/60',
+            i === current ? 'w-4 h-4 bg-synthwave-magenta' : 'w-3 h-3 bg-white/30 hover:bg-white/60',
           ]"
           :aria-label="`Aller à l'IA ${i + 1}`"
         />
@@ -119,7 +127,7 @@ onBeforeUnmount(stopAutoplay)
 
       <button
         @click="next(); restartAutoplay()"
-        class="text-white opacity-70 hover:opacity-100 transition-opacity text-lg sm:text-xl leading-none p-2"
+        class="text-white opacity-70 hover:opacity-100 transition-opacity text-2xl sm:text-3xl leading-none p-3"
         aria-label="Suivant"
       >
         →
