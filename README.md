@@ -1,4 +1,4 @@
-# Phronesis (Mésotès)
+# Mésotès
 
 Plateforme libre de ressources pédagogiques innovantes pour se former autrement à l'intelligence artificielle générative. Le site propose des activités ludiques pour comprendre l'IA générative en la manipulant directement plutôt que par un cours magistral.
 
@@ -45,13 +45,13 @@ src/
 
 La page Activités est une mini-SPA (routage par hash, sans rechargement) :
 
-| Route | Activité | Description |
-|---|---|---|
-| `#/` | Liste | Grille de cartes qui se retournent au survol (desktop) ou au tap (mobile) |
-| `#/projecteur` | Le Projecteur | Chat conversationnel pour cadrer un projet IA et obtenir une synthèse |
-| `#/decorateur` | Décorateur d'intérieur | Crée une pièce avec une IA, carrousel d'outils à essayer |
-| `#/dj` | Le DJ | Choix d'un thème musical (à la main ou via une roue de la fortune), génération de musique (Suno) et de pochette d'album |
-| `#/galerie` | Galerie d'image | Activité à venir |
+| Route          | Activité               | Description                                                                                                             |
+| -------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `#/`           | Liste                  | Grille de cartes qui se retournent au survol (desktop) ou au tap (mobile)                                               |
+| `#/projecteur` | Le Projecteur          | Chat conversationnel pour cadrer un projet IA et obtenir une synthèse                                                   |
+| `#/decorateur` | Décorateur d'intérieur | Crée une pièce avec une IA, carrousel d'outils à essayer                                                                |
+| `#/dj`         | Le DJ                  | Choix d'un thème musical (à la main ou via une roue de la fortune), génération de musique (Suno) et de pochette d'album |
+| `#/galerie`    | Galerie d'image        | Activité à venir                                                                                                        |
 
 ## Lancer le projet
 
