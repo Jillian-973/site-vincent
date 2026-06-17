@@ -12,7 +12,7 @@ const spinning = ref(false)
 const result = ref(null)
 
 const segAngle = computed(() => 360 / props.themes.length)
-const colors = ['#fa0881', '#8802fc', '#fc9d03', '#3daeba']
+const colors = ['var(--color-synthwave-magenta)', 'var(--color-electric-violet)', 'var(--color-neon-sunset)', 'var(--color-blue)']
 
 const conicGradient = computed(() => {
   const step = segAngle.value

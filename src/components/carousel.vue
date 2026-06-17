@@ -27,7 +27,7 @@
         <div
           v-else
           class="w-full h-full"
-          :style="{ background: slide.gradient || 'linear-gradient(to bottom right, #100923, #1a1040)' }"
+          :style="{ background: slide.gradient || 'linear-gradient(to bottom right, var(--color-retrogrid-black), #1a1040)' }"
         />
 
         <!-- Label on active slide only -->
@@ -89,9 +89,9 @@ const props = defineProps({
   slides: {
     type: Array,
     default: () => [
-      { id: 1, title: 'Activité 1', image: null, gradient: 'linear-gradient(to bottom right, #fa0881, #8802fc)', url: null },
-      { id: 2, title: 'Activité 2', image: null, gradient: 'linear-gradient(to bottom right, #8802fc, #3daeba)', url: null },
-      { id: 3, title: 'Activité 3', image: null, gradient: 'linear-gradient(to bottom right, #fc9d03, #fa0881)', url: null },
+      { id: 1, title: 'Activité 1', image: null, gradient: 'linear-gradient(to bottom right, var(--color-synthwave-magenta), var(--color-electric-violet))', url: null },
+      { id: 2, title: 'Activité 2', image: null, gradient: 'linear-gradient(to bottom right, var(--color-electric-violet), var(--color-blue))', url: null },
+      { id: 3, title: 'Activité 3', image: null, gradient: 'linear-gradient(to bottom right, var(--color-neon-sunset), var(--color-synthwave-magenta))', url: null },
     ],
   },
 })

@@ -20,7 +20,7 @@ const activities = [
       'Échangez avec un assistant conversationnel pour structurer votre projet IA et repartez avec une synthèse claire et exploitable.',
     duration: '15–20 min',
     tag: 'Cadrage de projet',
-    accentColor: '#8802FC',
+    accentColor: 'var(--color-electric-violet)',
     image: projecteurImg,
     available: true,
   },
@@ -30,7 +30,7 @@ const activities = [
     description: 'Crée une pièce entière grâce à une IA : décris ton style et laisse la magie opérer.',
     duration: '~10 min',
     tag: "Génération d'image",
-    accentColor: '#FC9D03',
+    accentColor: 'var(--color-neon-sunset)',
     image: decorateurImg,
     available: true,
   },
@@ -40,7 +40,7 @@ const activities = [
     description: "Compose une musique avec Suno et imagine la pochette de ton album avec une IA.",
     duration: '~20 min',
     tag: 'Création musicale',
-    accentColor: '#FA0881',
+    accentColor: 'var(--color-synthwave-magenta)',
     image: djImg,
     available: true,
   },
@@ -75,7 +75,7 @@ function faceStyle(activity) {
   if (activity.image) {
     return { backgroundImage: `url(${activity.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }
   }
-  return { background: `linear-gradient(to bottom right, ${activity.accentColor}, ${activity.accentColor}88)` }
+  return { background: `linear-gradient(to bottom right, ${activity.accentColor}, color-mix(in srgb, ${activity.accentColor} 53%, transparent))` }
 }
 </script>
 
@@ -143,7 +143,7 @@ function faceStyle(activity) {
                   <span
                     v-if="activity.tag"
                     class="text-sm sm:text-base text-white rounded-full px-3 py-1.5"
-                    :style="{ backgroundColor: activity.accentColor + '33', border: `1px solid ${activity.accentColor}66` }"
+                    :style="{ backgroundColor: `color-mix(in srgb, ${activity.accentColor} 20%, transparent)`, border: `1px solid color-mix(in srgb, ${activity.accentColor} 40%, transparent)` }"
                   >
                     {{ activity.tag }}
                   </span>
