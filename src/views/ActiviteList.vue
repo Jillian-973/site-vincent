@@ -1,11 +1,12 @@
 <script setup>
 import Header from '../components/header.vue'
+import Footer from '../components/footer.vue'
 import { useRouter } from 'vue-router'
 import { ref, onMounted } from 'vue'
 import projecteurImg from '../assets/projecteur.png'
 import decorateurImg from '../assets/decorateur.png'
 import djImg from '../assets/DJ.png'
-import galerieImg from '../assets/galerie.png'
+import galerieImg from '../assets/galerie 2.png'
 
 const router = useRouter()
 
@@ -47,7 +48,8 @@ const activities = [
 ]
 
 function open(activity) {
-  if (activity.available) router.push(`/${activity.id}`)
+  if (!activity.available) return
+  router.push(`/${activity.id}`)
 }
 
 // Sur mobile (pas de hover), 1er tap = retourne la carte, 2e tap = navigue
@@ -224,6 +226,8 @@ function faceStyle(activity) {
         </p>
       </div>
     </main>
+
+    <Footer />
   </div>
 </template>
 
