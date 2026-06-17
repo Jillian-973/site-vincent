@@ -14,7 +14,7 @@
 
       <nav class="flex gap-8 text-sm text-white/60">
         <a href="/main" class="hover:text-white transition-colors">Accueil</a>
-        <a href="/activite" class="hover:text-white transition-colors">Activités</a>
+        <a href="/activite" class="hover:text-white transition-colors">Ressources</a>
         <a href="/contact" class="hover:text-white transition-colors">À propos</a>
       </nav>
     </div>

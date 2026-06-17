@@ -81,12 +81,12 @@ onBeforeUnmount(stopAutoplay)
 
             <div class="relative z-10 flex flex-col items-center gap-3 sm:gap-4 max-w-[90%]">
               <h3
-                class="font-extrabold leading-tight"
-                :class="item.bgColor === '#ffffff' ? 'text-black text-2xl sm:text-3xl' : 'text-white text-xl sm:text-2xl'"
+                class="font-extrabold leading-tight text-[22px] sm:text-[30px]"
+                :class="item.bgColor === '#ffffff' ? 'text-black' : 'text-white'"
               >{{ item.name }}</h3>
               <p
-                class="leading-relaxed"
-                :class="item.bgColor === '#ffffff' ? 'text-black font-semibold text-base sm:text-lg' : 'text-white/80 text-sm sm:text-base'"
+                class="leading-relaxed text-[14px] sm:text-[18px]"
+                :class="item.bgColor === '#ffffff' ? 'text-black font-semibold' : 'text-white/80'"
               >{{ item.description }}</p>
               <a
                 :href="item.url"
