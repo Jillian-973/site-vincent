@@ -32,12 +32,12 @@ const activites = [
     url: '/activite.html#/decorateur',
   },
   {
-    id: 'dj',
+    id: 'disque-d-or',
     title: 'Le DJ',
     image: dj2Img,
     gradient:
       'linear-gradient(to bottom right, var(--color-neon-sunset), var(--color-synthwave-magenta))',
-    url: '/activite.html#/dj',
+    url: '/activite.html#/disque-d-or',
   },
   {
     id: 'galerie',

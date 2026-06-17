@@ -36,8 +36,8 @@ const activities = [
     available: true,
   },
   {
-    id: 'dj',
-    title: 'Le DJ',
+    id: 'disque-d-or',
+    title: 'Le Disque d\'or',
     description: 'Compose une musique avec Suno et imagine la pochette de ton album avec une IA.',
     duration: '~20 min',
     tag: 'Création musicale',

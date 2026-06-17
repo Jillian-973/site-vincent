@@ -139,7 +139,9 @@ const albumAiTools = [
     <main class="flex-1 flex flex-col items-center px-3 sm:px-6 py-6 sm:py-10 gap-8 sm:gap-12">
       <!-- Titre -->
       <div class="text-center max-w-2xl px-2">
-        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">Le DJ</h1>
+        <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">
+          Le Disque d'or
+        </h1>
         <p class="text-white/60 text-sm sm:text-base leading-relaxed">
           La consigne : <span class="text-white font-semibold">crée une musique avec Suno</span>,
           génère une musique avec l'IA et la pochette de l'album avec une IA.
