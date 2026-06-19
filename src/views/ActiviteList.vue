@@ -18,7 +18,7 @@ const activities = [
     title: 'Le Projecteur',
     description:
       'Échangez avec un assistant conversationnel pour structurer votre projet IA et repartez avec une synthèse claire et exploitable.',
-    duration: '15–20 min',
+    duration: '10-15 min',
     tag: 'Cadrage de projet',
     accentColor: 'var(--color-electric-violet)',
     image: projecteurImg,
@@ -37,7 +37,7 @@ const activities = [
   },
   {
     id: 'disque-d-or',
-    title: 'Le Disque d\'or',
+    title: "Le Disque d'or",
     description: 'Compose une musique avec Suno et imagine la pochette de ton album avec une IA.',
     duration: '~20 min',
     tag: 'Création musicale',
@@ -100,8 +100,8 @@ function faceStyle(activity) {
           class="text-white text-xl sm:text-2xl md:text-3xl leading-relaxed"
           style="font-family: 'Orbitron', sans-serif"
         >
-          Ci-dessous se trouve l'ensemble des ressources pédagogiques
-          conçues par le formateur et produites par l'équipe d'étudiants.
+          Ci-dessous se trouve l'ensemble des ressources pédagogiques conçues par le formateur et
+          produites par l'équipe d'étudiants.
         </p>
       </div>
 
@@ -216,13 +216,13 @@ function faceStyle(activity) {
           class="text-white/80 text-xl sm:text-2xl md:text-3xl leading-relaxed"
           style="font-family: 'Orbitron', sans-serif"
         >
-          Pour toute proposition de ressource, suggestion d'amélioration
-          ou demande de renseignement, vous pouvez nous contacter à
-          l'adresse mail suivante :
+          Pour toute proposition de ressource, suggestion d'amélioration ou demande de
+          renseignement, vous pouvez nous contacter à l'adresse mail suivante :
           <a
             href="mailto:vincent.grange.formateur@gmail.com"
             class="text-electric-violet underline underline-offset-4 hover:opacity-80 transition-opacity break-all"
-          >vincent.grange.formateur@gmail.com</a>
+            >vincent.grange.formateur@gmail.com</a
+          >
         </p>
       </div>
     </main>

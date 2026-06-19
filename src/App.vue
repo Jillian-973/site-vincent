@@ -68,7 +68,7 @@ const activites = [
       >
         <p class="max-w-xs sm:max-w-xl md:max-w-4xl text-base sm:text-xl md:text-[24px] text-black">
           Plateforme libre de ressources pédagogiques innovantes <br />
-          pour se faire former autrement à l’intelligence artificielle
+          pour se former autrement à l’intelligence artificielle
         </p>
       </div>
     </div>
@@ -94,7 +94,7 @@ const activites = [
         Nos activités pédagogiques
       </h2>
       <p class="text-base sm:text-lg md:text-[20px] mt-8">
-        Fais défilé les activités et plonge dans le monde de l'IA générative !
+        Fait défilé les activités et plonge dans le monde de l'IA générative !
       </p>
       <Carousel :slides="activites" />
     </div>

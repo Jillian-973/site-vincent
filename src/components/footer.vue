@@ -1,3 +1,9 @@
+<script setup>
+import mdsLogo from '../assets/MDS.png'
+
+const dolfiLogoUrl = 'https://dolfi-formation.fr/wp-content/uploads/2024/10/logo-dolfi-2025-blanc.webp'
+</script>
+
 <template>
   <footer
     class="border-t border-white/10 text-white"
@@ -15,7 +21,7 @@
       <nav class="flex gap-8 text-sm text-white/60">
         <a href="/main" class="hover:text-white transition-colors">Accueil</a>
         <a href="/activite" class="hover:text-white transition-colors">Ressources</a>
-        <a href="/contact" class="hover:text-white transition-colors">À propos</a>
+        <a href="/apropos" class="hover:text-white transition-colors">À propos</a>
       </nav>
     </div>
 
@@ -25,27 +31,8 @@
         Partenaires
       </p>
       <div class="flex flex-wrap items-center justify-center gap-6">
-        <!-- Remplacer chaque bloc par une <img> quand les logos sont disponibles -->
-        <div
-          class="w-28 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/20 text-xs"
-        >
-          Logo
-        </div>
-        <div
-          class="w-28 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/20 text-xs"
-        >
-          Logo
-        </div>
-        <div
-          class="w-28 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/20 text-xs"
-        >
-          Logo
-        </div>
-        <div
-          class="w-28 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/20 text-xs"
-        >
-          Logo
-        </div>
+        <img :src="dolfiLogoUrl" alt="Dolfi Formation" class="h-10 sm:h-12 object-contain" />
+        <img :src="mdsLogo" alt="MyDigitalSchool" class="h-10 sm:h-12 object-contain" />
       </div>
     </div>
 

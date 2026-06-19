@@ -140,17 +140,17 @@ watch(
 <style scoped>
 .wheel-label {
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
   width: 90px;
   height: 50%;
   margin-left: -45px;
-  transform-origin: top center;
+  transform-origin: bottom center;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
-  padding-bottom: 16px;
+  padding-top: 16px;
   color: white;
   font-size: 13px;
   font-weight: 700;
@@ -163,7 +163,7 @@ watch(
     width: 110px;
     margin-left: -55px;
     font-size: 16px;
-    padding-bottom: 22px;
+    padding-top: 22px;
   }
 }
 
@@ -172,7 +172,7 @@ watch(
     width: 150px;
     margin-left: -75px;
     font-size: 22px;
-    padding-bottom: 30px;
+    padding-top: 30px;
   }
 }
 

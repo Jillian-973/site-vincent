@@ -8,14 +8,17 @@ import FortuneWheel from '../components/FortuneWheel.vue'
 // Thèmes triés du plus populaire au moins populaire — modifiable librement
 const themes = [
   'Pop',
-  'Hip-Hop / Rap',
-  'Électro / EDM',
+  'Hip-Hop',
+  'Électro',
   'Rock',
   'R&B',
   'Reggaeton',
   'Synthwave',
-  'Lo-Fi',
-  'Cinématique',
+  'Metal',
+  'Rap',
+  'Jazz',
+  'Classique',
+  'Funk',
 ]
 
 const selectedTheme = ref(null)
@@ -144,7 +147,9 @@ const albumAiTools = [
         </h1>
         <p class="text-white/60 text-sm sm:text-base leading-relaxed">
           La consigne : <span class="text-white font-semibold">crée une musique avec Suno</span>,
-          génère une musique avec l'IA et la pochette de l'album avec une IA.
+          génère une musique avec l'IA, génère la pochette de l'album et le texte avec une IA.
+          <br />
+          Et n'oublie pas de donner un titre à ton morceau .
         </p>
       </div>
 
@@ -173,7 +178,7 @@ const albumAiTools = [
           </p>
           <button
             @click="wheelOpen = true"
-            class="w-full text-lg sm:text-xl md:text-2xl font-semibold rounded-xl sm:rounded-2xl px-6 py-4 sm:py-5 bg-electric-violet text-white hover:opacity-90 transition-opacity"
+            class="w-full cursor-pointer text-lg sm:text-xl md:text-2xl font-semibold rounded-xl sm:rounded-2xl px-6 py-4 sm:py-5 bg-electric-violet text-white hover:opacity-90 transition-opacity"
           >
             🎡 Faire tourner la roue
           </button>
@@ -194,6 +199,10 @@ const albumAiTools = [
       <!-- Carrousel IA musique -->
       <section class="w-full flex flex-col items-center gap-4">
         <h2 class="text-white font-bold text-lg sm:text-xl">IA à utiliser pour la musique</h2>
+        <p class="text-white/60 text-sm sm:text-base leading-relaxed text-center">
+          Décris le style musical et laisse l'IA créer ta piste. <br />
+          Télécharge le morceau en MP3.
+        </p>
         <AiCarousel :items="musicAiTools" />
       </section>
 
@@ -203,12 +212,59 @@ const albumAiTools = [
       >
         <div class="w-full flex flex-col items-center gap-4">
           <h2 class="text-white font-bold text-lg sm:text-xl">IA pour la pochette</h2>
+          <p class="text-white/60 text-sm sm:text-base leading-relaxed text-center">
+            Créé la ochette d'album qui irait avec ta musique. <br />
+            Télécharge en JPG ou PNG.
+          </p>
           <AiCarousel :items="pochetteAiTools" />
         </div>
         <div class="w-full flex flex-col items-center gap-4">
           <h2 class="text-white font-bold text-lg sm:text-xl">IA pour le texte</h2>
+          <p class="text-white/60 text-sm sm:text-base leading-relaxed text-center">
+            Créé les paroles de l'album qui irait avec ta musique.
+          </p>
           <AiCarousel :items="albumAiTools" />
         </div>
+      </section>
+
+      <!-- Envoie-moi -->
+      <section
+        class="relative w-full max-w-3xl overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 px-5 sm:px-10 py-8 sm:py-12 flex flex-col gap-4 sm:gap-5"
+      >
+        <div
+          class="absolute right-0 sm:right-8 top-0 w-56 h-56 sm:w-80 sm:h-80 rounded-full pointer-events-none"
+          style="
+            background-image:
+              repeating-linear-gradient(to bottom, transparent 0 4px, rgba(16, 9, 35, 0.55) 4px 8px),
+              radial-gradient(
+                circle at 50% 30%,
+                var(--color-neon-sunset),
+                var(--color-synthwave-magenta) 75%
+              );
+          "
+        />
+
+        <h2 class="relative text-2xl sm:text-4xl md:text-5xl font-bold text-white">Envoie-moi</h2>
+
+        <p class="relative inline-block bg-retrogrid-black/70 text-white text-sm sm:text-base leading-relaxed rounded px-2 py-1 w-fit">
+          Envoie le MP3 + l'image à :
+          <a
+            href="mailto:vincent.grange.formateur@gmail.com"
+            class="font-semibold underline hover:text-synthwave-magenta transition-colors"
+          >
+            vincent.grange.formateur@gmail.com
+          </a>
+        </p>
+
+        <p class="relative inline-block bg-retrogrid-black/70 text-white text-sm sm:text-base leading-relaxed rounded px-2 py-1 w-fit">
+          Dans l'objet du mail, écris :
+          <span class="font-semibold">Disque d'Or — [Ton prénom] — [Titre du morceau]</span>
+        </p>
+
+        <p class="relative inline-block bg-retrogrid-black/70 text-white text-sm sm:text-base leading-relaxed rounded px-2 py-1 w-fit">
+          Ton morceau rejoindra une playlist et les visiteurs du site pourront voter pour leurs
+          préférés.
+        </p>
       </section>
     </main>
 

@@ -1,7 +1,7 @@
 <template>
   <nav class="py-4 pl-6 pr-6 sm:pr-52 flex items-center justify-between">
     <a href="/main">
-      <img src="../assets/logo.png" alt="Mésotès" class="h-12 sm:h-16" />
+      <img src="../assets/logo.png" alt="Mésotès" class="h-26 sm:h-30" />
     </a>
 
     <ul class="flex flex-wrap justify-end gap-2 sm:gap-8">

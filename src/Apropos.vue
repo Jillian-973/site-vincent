@@ -6,16 +6,22 @@ import vincentImg from './assets/vincent logo mode.png'
 import romainImg from './assets/romain logo mode.png'
 import elvanImg from './assets/elvan mode logo.png'
 import killianImg from './assets/kylian logo mode.png'
+import vincentCardImg from './assets/vincent.png'
+import romainCardImg from './assets/romain.png'
+import elvanCardImg from './assets/elvan.png'
+import killianCardImg from './assets/killian.png'
 
 const members = [
   {
     name: 'Vincent Grange',
     roleTag: 'Formateur',
-    hasPortfolio: true,
+    hasPortfolio: false,
     portfolioUrl: '#',
-    linkedinUrl: '#',
-    color: 'bg-neon-sunset',
+    linkedinUrl: 'https://www.linkedin.com/in/vincent-grange/',
+    color: 'bg-[#FB8C32]',
+    tagColor: 'bg-[#F66074]',
     avatar: vincentImg,
+    cardAvatar: vincentCardImg,
     bio: "Ceci est un texte d'exemple, écrit simplement pour illustrer à quoi peut ressembler un passage un peu plus long. Il ne raconte rien de particulier : son seul but est d'occuper l'espace et de montrer comment les phrases peuvent s'enchaîner les unes après les autres pour former un paragraphe cohérent.",
   },
   {
@@ -23,9 +29,11 @@ const members = [
     roleTag: 'Designer',
     hasPortfolio: false,
     portfolioUrl: '#',
-    linkedinUrl: '#',
-    color: 'bg-synthwave-magenta',
+    linkedinUrl: 'https://www.linkedin.com/in/romain-weiss-66820b395/',
+    color: 'bg-[#F66074]',
+    tagColor: 'bg-[#8E2331]',
     avatar: romainImg,
+    cardAvatar: romainCardImg,
     bio: "Je me suis occupé de désigner le site sur lequel vous êtes en train de naviguer, j'ai réfléchi en particulier à l'harmonie visuelle et technique du projet pour que vous puissiez en profiter de la meilleure des manières. C'est également grâce à moi et Elvan que tous l'univers créatif de ce projet est né pour vous faire découvrir l'IA générative d'une manière inédite.",
   },
   {
@@ -33,9 +41,11 @@ const members = [
     roleTag: 'Designer',
     hasPortfolio: false,
     portfolioUrl: '#',
-    linkedinUrl: '#',
+    linkedinUrl: 'https://www.linkedin.com/in/elvan-kemence/',
     color: 'bg-[#8D4F98]',
+    tagColor: 'bg-[#631571]',
     avatar: elvanImg,
+    cardAvatar: elvanCardImg,
     bio: 'Je me suis occupé de toute la direction artistique du projet : création du logo, choix des couleurs et des typographies, ainsi que la conception des designs du site, notamment la page d’accueil et les éléments liés aux activités. J’ai travaillé à donner une identité visuelle cohérente et accessible pour que l’expérience soit claire pour tout le monde.',
   },
   {
@@ -45,7 +55,9 @@ const members = [
     portfolioUrl: 'https://jillian-973.github.io/Dev_Portfolio/',
     linkedinUrl: 'https://www.linkedin.com/in/killian-entertainment/',
     color: 'bg-[#51329C]',
+    tagColor: 'bg-[#2A1167]',
     avatar: killianImg,
+    cardAvatar: killianCardImg,
     bio: "Je suis développeur web freelance et j'ai été stagiaire pour ce projet, chargé de la conception et du développement d’une plateforme web sur laquelle les utilisateurs réalisent leurs activités en ligne. J’interviens sur la création des fonctionnalités et l’intégration des différentes interfaces du site. Au cours de mon stage, j’ai participé à la mise en place et à l’évolution du site afin de garantir une navigation fluide, interactive et adaptée aux besoins des utilisateurs.",
   },
 ]
@@ -75,7 +87,10 @@ const members = [
           </h2>
 
           <div class="flex items-center gap-2 mb-4">
-            <span class="bg-white/85 text-black text-xs font-bold px-3 py-1 rounded-full">
+            <span
+              class="text-white text-xs font-bold px-3 py-1 rounded-full"
+              :class="member.tagColor"
+            >
               {{ member.roleTag }}
             </span>
             <a
@@ -83,11 +98,16 @@ const members = [
               :href="member.portfolioUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-white/85 text-black text-xs font-bold px-3 py-1 rounded-full hover:bg-white transition-colors"
+              class="text-white text-xs font-bold px-3 py-1 rounded-full opacity-90 hover:opacity-100 transition-opacity"
+              :class="member.tagColor"
             >
               portfolio
             </a>
-            <span v-else class="bg-white/40 text-black/70 text-xs font-bold px-3 py-1 rounded-full">
+            <span
+              v-else
+              class="text-white/80 text-xs font-bold px-3 py-1 rounded-full"
+              :class="member.tagColor"
+            >
               non-portfolio
             </span>
           </div>
@@ -103,7 +123,7 @@ const members = [
           </a>
 
           <img
-            :src="member.avatar"
+            :src="member.cardAvatar"
             :alt="`Portrait de ${member.name}`"
             class="w-full h-44 sm:h-52 object-cover object-top"
           />
@@ -141,7 +161,6 @@ const members = [
                 aria-label="Profil LinkedIn"
                 class="bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 hover:bg-sky-200 transition-colors"
               >
-                <span class="w-3.5 h-3.5"><LinkedInIcon /></span>
                 linkedin
               </a>
               <a
