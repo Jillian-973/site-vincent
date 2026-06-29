@@ -19,7 +19,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         activite: 'activite.html',
-        apropos: 'apropos.html',
+        'a-propos': 'a-propos.html',
       },
     },
   },

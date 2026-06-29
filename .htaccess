@@ -15,8 +15,8 @@
   # "/activite" → son propre point d'entrée (build multi-pages Vite)
   RewriteRule ^activite/?$ /activite.html [L]
 
-  # "/apropos" → son propre point d'entrée (build multi-pages Vite)
-  RewriteRule ^apropos/?$ /apropos.html [L]
+  # "/a-propos" → son propre point d'entrée (build multi-pages Vite)
+  RewriteRule ^a-propos/?$ /a-propos.html [L]
 
   # Tout le reste (/, /main, /contact, futures pages...) → page d'accueil
   RewriteRule ^ /index.html [L]
