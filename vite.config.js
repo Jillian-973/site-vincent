@@ -17,8 +17,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'index.html',
-        activite: 'activite.html',
+        accueil: 'index.html',
+        ressource: 'ressources.html',
         'a-propos': 'a-propos.html',
       },
     },

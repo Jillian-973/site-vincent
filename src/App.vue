@@ -22,14 +22,14 @@ const activites = [
     image: projecteur2Img,
     gradient:
       'linear-gradient(to bottom right, var(--color-synthwave-magenta), var(--color-electric-violet))',
-    url: '/activite.html#/projecteur',
+    url: '/ressources.html#/projecteur',
   },
   {
     id: 'decorateur',
     title: "Décorateur d'intérieur",
     image: decorateur2Img,
     gradient: 'linear-gradient(to bottom right, var(--color-electric-violet), var(--color-blue))',
-    url: '/activite.html#/decorateur',
+    url: '/ressources.html#/decorateur',
   },
   {
     id: 'disque-d-or',
@@ -37,14 +37,14 @@ const activites = [
     image: dj2Img,
     gradient:
       'linear-gradient(to bottom right, var(--color-neon-sunset), var(--color-synthwave-magenta))',
-    url: '/activite.html#/disque-d-or',
+    url: '/ressources.html#/disque-d-or',
   },
   {
     id: 'galerie',
     title: "Galerie d'image",
     image: galerieImg,
     gradient: 'linear-gradient(to bottom right, var(--color-retrogrid-black), #1a1040)',
-    url: '/activite.html#/galerie',
+    url: '/ressources.html#/galerie',
   },
 ]
 </script>

@@ -7,7 +7,8 @@
       "Bash(pkill -f \"vite --port 5180\")",
       "Bash(powershell -NoProfile -Command 'Get-Process -Name node | Where-Object { \\(Get-NetTCPConnection -LocalPort 5180 -ErrorAction SilentlyContinue\\).OwningProcess -eq $_.Id } | Stop-Process -Force')",
       "Bash(netstat -ano)",
-      "Bash(npm uninstall *)"
+      "Bash(npm uninstall *)",
+      "Bash(git mv *)"
     ]
   }
 }

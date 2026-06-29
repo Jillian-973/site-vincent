@@ -13,20 +13,20 @@ import killianCardImg from './assets/killian.png'
 
 const members = [
   {
-    name: 'Vincent Grange',
-    roleTag: 'Formateur',
+    name: 'Vincent',
+    roleTag: 'Formateur en IA',
     hasPortfolio: false,
     portfolioUrl: '#',
     linkedinUrl: 'https://www.linkedin.com/in/vincent-grange/',
     color: 'bg-[#FB8C32]',
-    tagColor: 'bg-[#F66074]',
+    tagColor: 'bg-[#774115]',
     avatar: vincentImg,
     cardAvatar: vincentCardImg,
     bio: "Ceci est un texte d'exemple, écrit simplement pour illustrer à quoi peut ressembler un passage un peu plus long. Il ne raconte rien de particulier : son seul but est d'occuper l'espace et de montrer comment les phrases peuvent s'enchaîner les unes après les autres pour former un paragraphe cohérent.",
   },
   {
-    name: 'Weiss Romain',
-    roleTag: 'Designer',
+    name: 'Romain',
+    roleTag: 'Designer UX/UI',
     hasPortfolio: false,
     portfolioUrl: '#',
     linkedinUrl: 'https://www.linkedin.com/in/romain-weiss-66820b395/',
@@ -37,8 +37,8 @@ const members = [
     bio: "Je me suis occupé de désigner le site sur lequel vous êtes en train de naviguer, j'ai réfléchi en particulier à l'harmonie visuelle et technique du projet pour que vous puissiez en profiter de la meilleure des manières. C'est également grâce à moi et Elvan que tous l'univers créatif de ce projet est né pour vous faire découvrir l'IA générative d'une manière inédite.",
   },
   {
-    name: 'Kemence Elvan',
-    roleTag: 'Designer',
+    name: 'Elvan',
+    roleTag: 'Directeur artistique',
     hasPortfolio: false,
     portfolioUrl: '#',
     linkedinUrl: 'https://www.linkedin.com/in/elvan-kemence/',
@@ -49,7 +49,7 @@ const members = [
     bio: 'Je me suis occupé de toute la direction artistique du projet : création du logo, choix des couleurs et des typographies, ainsi que la conception des designs du site, notamment la page d’accueil et les éléments liés aux activités. J’ai travaillé à donner une identité visuelle cohérente et accessible pour que l’expérience soit claire pour tout le monde.',
   },
   {
-    name: 'Dumoulin Killian',
+    name: 'Killian',
     roleTag: 'Développeur web',
     hasPortfolio: true,
     portfolioUrl: 'https://jillian-973.github.io/Dev_Portfolio/',
@@ -69,69 +69,44 @@ const members = [
       <Header />
     </header>
 
-    <main class="flex-1 px-4 sm:px-8 py-10 sm:py-16">
-      <h1 class="text-3xl sm:text-5xl font-bold text-white text-center mb-12 sm:mb-20">
-        L'équipe derrière Mésotès
-      </h1>
+    <main class="flex-1 px-4 sm:px-8">
+      <!-- Cartes personnages : occupe tout l'écran, le reste se découvre au scroll -->
+      <section
+        class="min-h-screen flex flex-col items-center justify-center gap-10 sm:gap-16 py-10"
+      >
+        <h1 class="text-3xl sm:text-5xl font-bold text-white text-center">L'équipe S-1</h1>
 
-      <!-- Cartes personnages -->
-      <div class="flex flex-wrap justify-center gap-6 sm:gap-8 mb-20 sm:mb-28">
-        <div
-          v-for="member in members"
-          :key="member.name"
-          class="relative w-48 sm:w-56 rounded-3xl border-4 border-white shadow-xl overflow-hidden flex flex-col items-center pt-5 pb-0 transition-transform duration-300 ease-out hover:scale-110 hover:z-10 hover:shadow-2xl"
-          :class="member.color"
-        >
-          <h2 class="text-lg sm:text-xl font-bold text-white text-center px-3 mb-3">
-            {{ member.name }}
-          </h2>
-
-          <div class="flex items-center gap-2 mb-4">
-            <span
-              class="text-white text-xs font-bold px-3 py-1 rounded-full"
-              :class="member.tagColor"
-            >
-              {{ member.roleTag }}
-            </span>
-            <a
-              v-if="member.hasPortfolio"
-              :href="member.portfolioUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-white text-xs font-bold px-3 py-1 rounded-full opacity-90 hover:opacity-100 transition-opacity"
-              :class="member.tagColor"
-            >
-              portfolio
-            </a>
-            <span
-              v-else
-              class="text-white/80 text-xs font-bold px-3 py-1 rounded-full"
-              :class="member.tagColor"
-            >
-              non-portfolio
-            </span>
-          </div>
-
-          <a
-            :href="member.linkedinUrl"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Profil LinkedIn"
-            class="w-8 h-8 mb-4"
+        <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-10">
+          <div
+            v-for="member in members"
+            :key="member.name"
+            class="relative w-56 sm:w-64 md:w-72 rounded-3xl border-4 border-white shadow-xl overflow-hidden flex flex-col items-center pt-6 pb-0 transition-transform duration-300 ease-out hover:scale-110 hover:z-10 hover:shadow-2xl"
+            :class="member.color"
           >
-            <LinkedInIcon />
-          </a>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center px-3 mb-3">
+              {{ member.name }}
+            </h2>
 
-          <img
-            :src="member.cardAvatar"
-            :alt="`Portrait de ${member.name}`"
-            class="w-full h-44 sm:h-52 object-cover object-top"
-          />
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="text-white text-xs sm:text-sm font-bold px-3 py-1 rounded-full"
+                :class="member.tagColor"
+              >
+                {{ member.roleTag }}
+              </span>
+            </div>
+
+            <img
+              :src="member.cardAvatar"
+              :alt="`Portrait de ${member.name}`"
+              class="w-full h-52 sm:h-60 md:h-72 object-cover object-top"
+            />
+          </div>
         </div>
-      </div>
+      </section>
 
       <!-- Présentations -->
-      <div class="max-w-4xl mx-auto flex flex-col gap-12 sm:gap-16">
+      <div class="max-w-4xl mx-auto flex flex-col gap-12 sm:gap-16 py-10 sm:py-16">
         <div
           v-for="(member, index) in members"
           :key="`bio-${member.name}`"

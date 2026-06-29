@@ -20,8 +20,8 @@ const dolfiLogoUrl =
       </div>
 
       <nav class="flex gap-8 text-sm text-white/60">
-        <a href="/main" class="hover:text-white transition-colors">Accueil</a>
-        <a href="/activite" class="hover:text-white transition-colors">Ressources</a>
+        <a href="/accueil" class="hover:text-white transition-colors">Accueil</a>
+        <a href="/ressources" class="hover:text-white transition-colors">Ressources</a>
         <a href="/a-propos" class="hover:text-white transition-colors">À propos</a>
       </nav>
     </div>
@@ -41,10 +41,14 @@ const dolfiLogoUrl =
       class="max-w-6xl mx-auto px-6 py-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3"
     >
       <div class="flex gap-6 text-xs text-white/40">
-        <a href="#" class="hover:text-white/70 transition-colors">CGU</a>
-        <a href="#" class="hover:text-white/70 transition-colors">Mentions légales</a>
+        <a href="#" class="hover:text-white/70 transition-colors"
+          >Conditions Générales d'Utilisation</a
+        >
       </div>
-      <p class="text-white/30 text-xs">© 2026 Mésotès — Tous droits réservés</p>
+      <p class="text-white/30 text-xs">Mésotès — Tous droits réservés</p>
+      <a href="#" class="text-white/30 text-xs hover:text-white/70 transition-colors"
+        >Mentions légales</a
+      >
     </div>
   </footer>
 </template>

@@ -12,13 +12,16 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # "/activite" → son propre point d'entrée (build multi-pages Vite)
-  RewriteRule ^activite/?$ /activite.html [L]
+  # "/ressources" → son propre point d'entrée (build multi-pages Vite)
+  RewriteRule ^ressources/?$ /ressources.html [L]
 
   # "/a-propos" → son propre point d'entrée (build multi-pages Vite)
   RewriteRule ^a-propos/?$ /a-propos.html [L]
 
-  # Tout le reste (/, /main, /contact, futures pages...) → page d'accueil
+  # "/accueil" → page d'accueil (explicite, même si déjà couvert par le repli ci-dessous)
+  RewriteRule ^accueil/?$ /index.html [L]
+
+  # Tout le reste (/, /contact, futures pages...) → page d'accueil
   RewriteRule ^ /index.html [L]
 </IfModule>
 
