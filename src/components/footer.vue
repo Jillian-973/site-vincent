@@ -1,7 +1,8 @@
 <script setup>
 import mdsLogo from '../assets/MDS.png'
 
-const dolfiLogoUrl = 'https://dolfi-formation.fr/wp-content/uploads/2024/10/logo-dolfi-2025-blanc.webp'
+const dolfiLogoUrl =
+  'https://dolfi-formation.fr/wp-content/uploads/2024/10/logo-dolfi-2025-blanc.webp'
 </script>
 
 <template>
@@ -32,7 +33,6 @@ const dolfiLogoUrl = 'https://dolfi-formation.fr/wp-content/uploads/2024/10/logo
       </p>
       <div class="flex flex-wrap items-center justify-center gap-6">
         <img :src="dolfiLogoUrl" alt="Dolfi Formation" class="h-10 sm:h-12 object-contain" />
-        <img :src="mdsLogo" alt="MyDigitalSchool" class="h-10 sm:h-12 object-contain" />
       </div>
     </div>
 
