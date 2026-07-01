@@ -154,9 +154,11 @@ onMounted(() => {
           questions, une par une. En seulement 10 à 15 minutes, tu obtiendras une synthèse rédigée
           prête à l'emploi que tu pourras directement ajouter au début de ton rapport.
         </p>
-        <p class="text-amber-300/90 text-sm sm:text-base font-semibold leading-relaxed bg-amber-300/10 border border-amber-300/20 rounded-xl px-4 py-3">
-          Important : ne saisis pas de données personnelles ou confidentielles (secrets
-          commerciaux, numéros de compte, etc.)
+        <p
+          class="text-amber-300/90 text-sm sm:text-base font-semibold leading-relaxed bg-amber-300/10 border border-amber-300/20 rounded-xl px-4 py-3"
+        >
+          Important : ne saisis pas de données personnelles ou confidentielles (secrets commerciaux,
+          numéros de compte, etc.)
         </p>
       </div>
 
@@ -173,7 +175,12 @@ onMounted(() => {
         >
           <template v-for="(msg, i) in messages" :key="i">
             <!-- Bulle utilisateur -->
-            <div v-if="msg.role === 'user'" class="flex justify-end" role="article" aria-label="Ton message">
+            <div
+              v-if="msg.role === 'user'"
+              class="flex justify-end"
+              role="article"
+              aria-label="Ton message"
+            >
               <div
                 class="max-w-[85%] bg-electric-violet text-white rounded-2xl rounded-br-sm px-4 py-2.5 text-sm sm:text-base leading-relaxed whitespace-pre-wrap"
               >
@@ -188,11 +195,14 @@ onMounted(() => {
               role="article"
               aria-label="Synthèse du Projecteur"
             >
-              <div class="w-full bg-indigo-50 border border-indigo-200 rounded-2xl p-4 sm:p-5 flex flex-col gap-3">
+              <div
+                class="w-full bg-indigo-50 border border-indigo-200 rounded-2xl p-4 sm:p-5 flex flex-col gap-3"
+              >
                 <span class="text-xs font-bold uppercase tracking-widest text-electric-violet"
                   >Synthèse de ton projet</span
                 >
-                <p class="text-sm sm:text-base text-gray-900 leading-relaxed whitespace-pre-wrap"
+                <p
+                  class="text-sm sm:text-base text-gray-900 leading-relaxed whitespace-pre-wrap"
                   v-html="renderMarkdown(synthesisText(msg.content))"
                 />
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -211,7 +221,12 @@ onMounted(() => {
             </div>
 
             <!-- Bulle bot -->
-            <div v-else class="flex justify-start" role="article" aria-label="Réponse du Projecteur">
+            <div
+              v-else
+              class="flex justify-start"
+              role="article"
+              aria-label="Réponse du Projecteur"
+            >
               <div
                 class="max-w-[85%] bg-gray-100 text-gray-900 rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm sm:text-base leading-relaxed whitespace-pre-wrap"
                 v-html="renderMarkdown(msg.content)"
