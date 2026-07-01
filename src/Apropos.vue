@@ -20,6 +20,7 @@ const members = [
     linkedinUrl: 'https://www.linkedin.com/in/vincent-grange/',
     color: 'bg-[#FB8C32]',
     tagColor: 'bg-[#774115]',
+    lookingLeft: false,
     avatar: vincentImg,
     cardAvatar: vincentCardImg,
     bio: "Ceci est un texte d'exemple, écrit simplement pour illustrer à quoi peut ressembler un passage un peu plus long. Il ne raconte rien de particulier : son seul but est d'occuper l'espace et de montrer comment les phrases peuvent s'enchaîner les unes après les autres pour former un paragraphe cohérent.",
@@ -32,6 +33,7 @@ const members = [
     linkedinUrl: 'https://www.linkedin.com/in/romain-weiss-66820b395/',
     color: 'bg-[#F66074]',
     tagColor: 'bg-[#8E2331]',
+    lookingLeft: true,
     avatar: romainImg,
     cardAvatar: romainCardImg,
     bio: "Je me suis occupé de désigner le site sur lequel vous êtes en train de naviguer, j'ai réfléchi en particulier à l'harmonie visuelle et technique du projet pour que vous puissiez en profiter de la meilleure des manières. C'est également grâce à moi et Elvan que tous l'univers créatif de ce projet est né pour vous faire découvrir l'IA générative d'une manière inédite.",
@@ -44,6 +46,7 @@ const members = [
     linkedinUrl: 'https://www.linkedin.com/in/elvan-kemence/',
     color: 'bg-[#8D4F98]',
     tagColor: 'bg-[#631571]',
+    lookingLeft: false,
     avatar: elvanImg,
     cardAvatar: elvanCardImg,
     bio: 'Je me suis occupé de toute la direction artistique du projet : création du logo, choix des couleurs et des typographies, ainsi que la conception des designs du site, notamment la page d’accueil et les éléments liés aux activités. J’ai travaillé à donner une identité visuelle cohérente et accessible pour que l’expérience soit claire pour tout le monde.',
@@ -56,6 +59,7 @@ const members = [
     linkedinUrl: 'https://www.linkedin.com/in/killian-entertainment/',
     color: 'bg-[#51329C]',
     tagColor: 'bg-[#2A1167]',
+    lookingLeft: true,
     avatar: killianImg,
     cardAvatar: killianCardImg,
     bio: "Je suis développeur web freelance et j'ai été stagiaire pour ce projet, chargé de la conception et du développement d’une plateforme web sur laquelle les utilisateurs réalisent leurs activités en ligne. J’interviens sur la création des fonctionnalités et l’intégration des différentes interfaces du site. Au cours de mon stage, j’ai participé à la mise en place et à l’évolution du site afin de garantir une navigation fluide, interactive et adaptée aux besoins des utilisateurs.",
@@ -110,7 +114,7 @@ const members = [
         <div
           v-for="(member, index) in members"
           :key="`bio-${member.name}`"
-          class="flex flex-col sm:items-end gap-3"
+          class="flex flex-col sm:items-center gap-3"
           :class="index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'"
         >
           <div
@@ -121,6 +125,7 @@ const members = [
               :src="member.avatar"
               :alt="`Portrait de ${member.name}`"
               class="w-full h-full object-cover"
+              :class="{ '-scale-x-100': member.lookingLeft }"
             />
           </div>
 
