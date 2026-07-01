@@ -27,6 +27,21 @@ function synthesisText(content) {
   return content.slice(SYNTHESIS_MARKER.length).trim()
 }
 
+function renderMarkdown(text) {
+  return (
+    text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      // **gras** → <strong>
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      // ###titre### → <strong>
+      .replace(/###([^#\n]+?)###/g, '<strong>$1</strong>')
+      // ### titre (début de ligne) → <strong>
+      .replace(/^#{1,3} (.+)$/gm, '<strong>$1</strong>')
+  )
+}
+
 function scrollBottom() {
   nextTick(() => {
     if (messagesEl.value) messagesEl.value.scrollTop = messagesEl.value.scrollHeight
@@ -177,9 +192,9 @@ onMounted(() => {
                 <span class="text-xs font-bold uppercase tracking-widest text-electric-violet"
                   >Synthèse de ton projet</span
                 >
-                <p class="text-sm sm:text-base text-gray-900 leading-relaxed whitespace-pre-wrap">
-                  {{ synthesisText(msg.content) }}
-                </p>
+                <p class="text-sm sm:text-base text-gray-900 leading-relaxed whitespace-pre-wrap"
+                  v-html="renderMarkdown(synthesisText(msg.content))"
+                />
                 <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                   <button
                     @click="copySynthesis(msg.content, i)"
@@ -199,9 +214,8 @@ onMounted(() => {
             <div v-else class="flex justify-start" role="article" aria-label="Réponse du Projecteur">
               <div
                 class="max-w-[85%] bg-gray-100 text-gray-900 rounded-2xl rounded-bl-sm px-4 py-2.5 text-sm sm:text-base leading-relaxed whitespace-pre-wrap"
-              >
-                {{ msg.content }}
-              </div>
+                v-html="renderMarkdown(msg.content)"
+              />
             </div>
           </template>
 
