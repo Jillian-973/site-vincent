@@ -8,7 +8,8 @@
       "Bash(powershell -NoProfile -Command 'Get-Process -Name node | Where-Object { \\(Get-NetTCPConnection -LocalPort 5180 -ErrorAction SilentlyContinue\\).OwningProcess -eq $_.Id } | Stop-Process -Force')",
       "Bash(netstat -ano)",
       "Bash(npm uninstall *)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\('C:\\\\MDS COURS\\\\B2\\\\stage\\\\Vincent\\\\vincent_app\\\\src\\\\assets\\\\Footer.png'\\); \"$\\($img.Width\\) x $\\($img.Height\\)\"; $img.Dispose\\(\\))"
     ]
   }
 }

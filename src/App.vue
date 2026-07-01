@@ -9,8 +9,6 @@ import galerieImg from './assets/galerie.png'
 import { h } from 'vue'
 import Footer from './components/footer.vue'
 
-import ordinateur from './assets/ordinateur.svg'
-
 const scrollTo = (id) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
@@ -100,5 +98,5 @@ const activites = [
     </div>
   </div>
 
-  <Footer />
+  <Footer bg-class="bg-[#000000]" />
 </template>
