@@ -80,11 +80,11 @@ const members = [
       >
         <h1 class="text-3xl sm:text-5xl font-bold text-white text-center">L'équipe S-1</h1>
 
-        <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 justify-items-center">
           <div
             v-for="member in members"
             :key="member.name"
-            class="relative w-56 sm:w-64 md:w-72 rounded-3xl border-4 border-white shadow-xl overflow-hidden flex flex-col items-center pt-6 pb-0 transition-transform duration-300 ease-out hover:scale-110 hover:z-10 hover:shadow-2xl"
+            class="relative w-56 sm:w-full sm:max-w-72 rounded-3xl border-4 border-white shadow-xl overflow-hidden flex flex-col items-center pt-6 pb-0 transition-transform duration-300 ease-out hover:scale-110 hover:z-10 hover:shadow-2xl"
             :class="member.color"
           >
             <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-white text-center px-3 mb-3">

@@ -21,7 +21,7 @@ const dolfiLogoUrl =
       <div
         class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col sm:flex-row items-center justify-between gap-6"
       >
-        <div class="text-center sm:text-left">
+        <div class="text-center sm:text-center">
           <img src="../assets/logo.png" alt="Mésotès" class="h-12 sm:h-16 mb-1" />
           <p class="text-white/50 text-sm">Plateforme pédagogique IA</p>
         </div>

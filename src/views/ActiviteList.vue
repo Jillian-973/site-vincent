@@ -97,7 +97,7 @@ function faceStyle(activity) {
       <!-- Texte intro -->
       <div class="text-center max-w-6xl px-2">
         <p
-          class="text-white text-xl sm:text-2xl md:text-3xl leading-relaxed"
+          class="text-white text-sm sm:text-xl md:text-2xl lg:text-3xl leading-relaxed"
           style="font-family: 'Orbitron', sans-serif"
         >
           Ci-dessous se trouve l'ensemble des ressources pédagogiques<br />
@@ -213,7 +213,7 @@ function faceStyle(activity) {
       <!-- Texte contact -->
       <div class="text-center max-w-6xl px-2 pb-4">
         <p
-          class="text-white/80 text-xl sm:text-2xl md:text-3xl leading-relaxed"
+          class="text-white/80 text-sm sm:text-xl md:text-2xl lg:text-3xl leading-relaxed break-words"
           style="font-family: 'Orbitron', sans-serif"
         >
           Pour toute proposition de ressource, suggestion d'amélioration<br />
@@ -221,7 +221,7 @@ function faceStyle(activity) {
           l'adresse mail suivante :
           <a
             href="mailto:vincent.grange.formateur@gmail.com"
-            class="text-electric-violet underline underline-offset-4 hover:opacity-80 transition-opacity break-all"
+            class="text-electric-violet underline underline-offset-4 hover:opacity-80 transition-opacity break-words"
             >vincent.grange.formateur@gmail.com</a
           >
         </p>
