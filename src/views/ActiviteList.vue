@@ -95,13 +95,13 @@ function faceStyle(activity) {
 
     <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12 gap-10 sm:gap-14">
       <!-- Texte intro -->
-      <div class="text-center max-w-4xl px-2">
+      <div class="text-center max-w-6xl px-2">
         <p
           class="text-white text-xl sm:text-2xl md:text-3xl leading-relaxed"
           style="font-family: 'Orbitron', sans-serif"
         >
-          Ci-dessous se trouve l'ensemble des ressources pédagogiques conçues par le formateur et
-          produites par l'équipe d'étudiants.
+          Ci-dessous se trouve l'ensemble des ressources pédagogiques<br />
+          conçues par le formateur et produites par l'équipe d'étudiants.
         </p>
       </div>
 
@@ -211,13 +211,14 @@ function faceStyle(activity) {
         </div>
       </div>
       <!-- Texte contact -->
-      <div class="text-center max-w-4xl px-2 pb-4">
+      <div class="text-center max-w-6xl px-2 pb-4">
         <p
           class="text-white/80 text-xl sm:text-2xl md:text-3xl leading-relaxed"
           style="font-family: 'Orbitron', sans-serif"
         >
-          Pour toute proposition de ressource, suggestion d'amélioration ou demande de
-          renseignement, vous pouvez nous contacter à l'adresse mail suivante :
+          Pour toute proposition de ressource, suggestion d'amélioration<br />
+          ou demande de renseignement, vous pouvez nous contacter à<br />
+          l'adresse mail suivante :
           <a
             href="mailto:vincent.grange.formateur@gmail.com"
             class="text-electric-violet underline underline-offset-4 hover:opacity-80 transition-opacity break-all"
