@@ -27,7 +27,7 @@ const dolfiLogoUrl =
         </div>
 
         <nav class="flex gap-8 text-sm text-white/60">
-          <a href="/accueil" class="hover:text-white transition-colors">Accueil</a>
+          <a href="/" class="hover:text-white transition-colors">Accueil</a>
           <a href="/ressources" class="hover:text-white transition-colors">Ressources</a>
           <a href="/a-propos" class="hover:text-white transition-colors">À propos</a>
         </nav>
