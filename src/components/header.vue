@@ -1,6 +1,6 @@
 <template>
   <nav class="py-4 pl-4 pr-4 sm:pl-6 sm:pr-52 flex items-center justify-between">
-    <a href="/accueil">
+    <a href="/">
       <img src="../assets/logo.png" alt="Mésotès" class="h-14 sm:h-26 md:h-30" />
     </a>
 
