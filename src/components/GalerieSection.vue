@@ -69,6 +69,21 @@ async function load() {
 }
 
 onMounted(load)
+
+var d = document,
+  w = 'https://tally.so/widgets/embed.js',
+  v = function () {
+    'undefined' != typeof Tally
+      ? Tally.loadEmbeds()
+      : d.querySelectorAll('iframe[data-tally-src]:not([src])').forEach(function (e) {
+          e.src = e.dataset.tallySrc
+        })
+  }
+if ('undefined' != typeof Tally) v()
+else if (d.querySelector('script[src="' + w + '"]') == null) {
+  var s = d.createElement('script')
+  ;((s.src = w), (s.onload = v), (s.onerror = v), d.body.appendChild(s))
+}
 </script>
 
 <template>
@@ -98,6 +113,33 @@ onMounted(load)
     <template v-else>
       <GalerieCarousel v-for="s in seasons" :key="s.name" :images="s.images" :season="s.name" />
     </template>
+
+    <!-- Tally form -->
+    <div class="w-full mt-10 sm:mt-16 px-4 sm:px-10 lg:px-24 pb-4">
+
+      <!-- Iframe container -->
+      <div class="relative max-w-2xl mx-auto rounded-2xl border border-white/10 overflow-hidden"
+           style="background: rgba(255,255,255,0.5)">
+        <!-- Top accent line -->
+        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric-violet/50 to-transparent" />
+        <!-- Bottom accent line -->
+        <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        <div class="px-3 sm:px-8 py-6">
+          <iframe
+            data-tally-src="https://tally.so/embed/QKXqdX?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+            loading="lazy"
+            width="100%"
+            height="643"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            title="Formulaire de soumission"
+            class="block"
+          ></iframe>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
