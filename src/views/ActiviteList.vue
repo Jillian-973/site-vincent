@@ -6,8 +6,6 @@ import { ref, onMounted } from 'vue'
 import projecteurImg from '../assets/projecteur.png'
 import decorateurImg from '../assets/decorateur.png'
 import djImg from '../assets/DJ.png'
-import galerieImg from '../assets/galerie 2.png'
-
 const router = useRouter()
 
 // `image: null` => fallback couleurs de base (gradient / verre dépoli).
@@ -183,33 +181,6 @@ function faceStyle(activity) {
         </div>
       </div>
 
-      <!-- Galerie d'image : bloc unique, pas de flip -->
-      <div
-        class="relative overflow-hidden w-full max-w-6xl mt-6 sm:mt-10 rounded-2xl border border-white/20 min-h-[220px] sm:min-h-[300px] cursor-pointer flex flex-col justify-end hover:border-synthwave-magenta/40 transition-colors"
-        :style="{
-          backgroundImage: `url(${galerieImg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }"
-        @click="router.push('/galerie')"
-      >
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-        <div
-          class="relative z-10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 p-5 sm:p-8"
-        >
-          <div>
-            <h3 class="text-white font-bold text-xl sm:text-2xl mb-1.5">Galerie d'image</h3>
-            <p class="text-white/70 text-sm sm:text-base">
-              Explorez les créations de la communauté.
-            </p>
-          </div>
-          <span
-            class="shrink-0 text-xs sm:text-sm text-white/40 border border-white/15 rounded-xl px-4 py-2"
-          >
-            Bientôt disponible
-          </span>
-        </div>
-      </div>
       <!-- Texte contact -->
       <div class="text-center max-w-6xl px-2 pb-4">
         <p

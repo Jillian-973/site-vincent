@@ -2,6 +2,7 @@
 import Header from '../components/header.vue'
 import Footer from '../components/footer.vue'
 import AiCarousel from '../components/AiCarousel.vue'
+import GalerieSection from '../components/GalerieSection.vue'
 
 const aiTools = [
   {
@@ -78,6 +79,8 @@ const aiTools = [
         ></iframe>
       </div>
     </div>
+
+    <GalerieSection />
 
     <Footer class="shrink-0" />
   </div>

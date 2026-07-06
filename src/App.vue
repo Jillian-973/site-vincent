@@ -5,7 +5,6 @@ import Carousel from './components/carousel.vue'
 import projecteur2Img from './assets/projecteur 2.png'
 import decorateur2Img from './assets/decorateur 2.png'
 import dj2Img from './assets/DJ 2.png'
-import galerieImg from './assets/galerie.png'
 import { h } from 'vue'
 import Footer from './components/footer.vue'
 
@@ -36,13 +35,6 @@ const activites = [
     gradient:
       'linear-gradient(to bottom right, var(--color-neon-sunset), var(--color-synthwave-magenta))',
     url: '/ressources.html#/disque-d-or',
-  },
-  {
-    id: 'galerie',
-    title: "Galerie d'image",
-    image: galerieImg,
-    gradient: 'linear-gradient(to bottom right, var(--color-retrogrid-black), #1a1040)',
-    url: '/ressources.html#/galerie',
   },
 ]
 </script>

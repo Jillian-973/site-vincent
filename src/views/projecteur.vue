@@ -20,11 +20,21 @@ const messagesEl = ref(null)
 const inputEl = ref(null)
 
 function isSynthesis(content) {
-  return content.startsWith(SYNTHESIS_MARKER)
+  return content.trimStart().startsWith(SYNTHESIS_MARKER)
 }
 
 function synthesisText(content) {
-  return content.slice(SYNTHESIS_MARKER.length).trim()
+  const idx = content.indexOf(SYNTHESIS_MARKER)
+  return idx === -1 ? content : content.slice(idx + SYNTHESIS_MARKER.length).trim()
+}
+
+// Version plain-text pour le presse-papier : retire les symboles markdown, garde les sauts de ligne
+function synthesisPlainText(content) {
+  return synthesisText(content)
+    .replace(/\*\*(.+?)\*\*/gs, '$1')
+    .replace(/###([^#\n]+?)###/g, '$1')
+    .replace(/^#{1,3} (.+)$/gm, '$1')
+    .replace(/\n{3,}/g, '\n\n')
 }
 
 function renderMarkdown(text) {
@@ -62,7 +72,7 @@ function handleKey(e) {
 }
 
 async function copySynthesis(content, index) {
-  await navigator.clipboard.writeText(synthesisText(content))
+  await navigator.clipboard.writeText(synthesisPlainText(content))
   copiedIndex.value = index
   setTimeout(() => {
     if (copiedIndex.value === index) copiedIndex.value = null
