@@ -16,7 +16,8 @@
       "Bash(node responsive_check.js)",
       "PowerShell(Get-NetTCPConnection -LocalPort 5174 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue })",
       "PowerShell(Get-NetTCPConnection -LocalPort 5174 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; cd \"C:\\\\Users\\\\killi\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--MDS-COURS-B2-stage-Vincent-vincent-app\\\\53e88ff7-e47d-4899-b80f-2bf5b194b887\\\\scratchpad\"; npm uninstall playwright 2>&1 | Select-Object -Last 2)",
-      "PowerShell(Get-NetTCPConnection -LocalPort 5174 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; cd \"C:\\\\Users\\\\killi\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--MDS-COURS-B2-stage-Vincent-vincent-app\\\\53e88ff7-e47d-4899-b80f-2bf5b194b887\\\\scratchpad\"; npm uninstall playwright 2>&1 | Select-Object -Last 1)"
+      "PowerShell(Get-NetTCPConnection -LocalPort 5174 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; cd \"C:\\\\Users\\\\killi\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--MDS-COURS-B2-stage-Vincent-vincent-app\\\\53e88ff7-e47d-4899-b80f-2bf5b194b887\\\\scratchpad\"; npm uninstall playwright 2>&1 | Select-Object -Last 1)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

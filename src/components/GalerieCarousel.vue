@@ -23,11 +23,11 @@ function modIdx(i) {
 
 const centerImage = computed(() => props.images[modIdx(currentIndex.value)])
 
-// 2 sides on mobile (<640), 3 on tablet (<1024), 5 on desktop
+// 3 sides on mobile (<640), 5 on tablet (<1024), 8 on desktop
 const visibleSides = computed(() => {
-  if (windowWidth.value < 640) return 2
-  if (windowWidth.value < 1024) return 3
-  return 5
+  if (windowWidth.value < 640) return 3
+  if (windowWidth.value < 1024) return 5
+  return 8
 })
 
 const leftItems = computed(() => {
@@ -88,6 +88,14 @@ function goTo(index) {
   pauseTimeout = setTimeout(startAutoPlay, 5000)
 }
 
+function prev() {
+  goTo(modIdx(currentIndex.value - 1))
+}
+
+function next() {
+  goTo(modIdx(currentIndex.value + 1))
+}
+
 function openModal() {
   clearInterval(autoTimer)
   clearTimeout(pauseTimeout)
@@ -112,74 +120,87 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-4 sm:gap-[18px] pb-6 border-white/[0.07]">
+  <div class="w-full flex flex-col items-center gap-4 sm:gap-[18px] pb-6 border-white/[0.07]">
     <!-- Season label -->
     <p class="orb font-bold text-xl py-20 sm:text-2xl tracking-[0.1em] uppercase text-white">
       {{ season }}
     </p>
 
-    <!-- Carousel strip -->
-    <div class="flex items-center justify-center gap-2 w-full overflow-hidden py-2 px-2">
-      <!-- Left side items -->
-      <div
-        v-for="item in leftItems"
-        :key="`l-${item.index}`"
-        class="cursor-pointer overflow-hidden rounded-[3px] shrink-0 transition-[opacity,width,height] duration-[450ms] ease-in-out hover:brightness-125"
-        :style="sideStyle(item.dist)"
-        @click="goTo(item.index)"
+    <!-- Carousel strip + arrows -->
+    <div class="relative w-full">
+      <!-- Left arrow -->
+      <button
+        class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white/70 hover:text-white border border-white/15 hover:border-white/40 transition-all backdrop-blur-sm"
+        aria-label="Image précédente"
+        @click="prev"
       >
-        <img
-          :src="item.url"
-          :alt="item.name"
-          class="w-full h-full object-cover block pointer-events-none"
-          draggable="false"
-        />
+        <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 sm:w-5 sm:h-5">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <!-- Strip -->
+      <div class="flex items-center justify-center gap-2 w-full overflow-hidden py-2">
+        <!-- Left side items -->
+        <div
+          v-for="item in leftItems"
+          :key="`l-${item.index}`"
+          class="cursor-pointer overflow-hidden rounded-[3px] shrink-0 transition-[opacity,width,height] duration-[450ms] ease-in-out hover:brightness-125"
+          :style="sideStyle(item.dist)"
+          @click="goTo(item.index)"
+        >
+          <img
+            :src="item.url"
+            :alt="item.name"
+            class="w-full h-full object-cover block pointer-events-none"
+            draggable="false"
+          />
+        </div>
+
+        <!-- Center item -->
+        <div
+          class="relative cursor-pointer shrink-0 transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+          @click="openModal"
+        >
+          <div class="absolute w-4 h-4 border-white/75 border-t-2 border-l-2" style="top: -7px; left: -7px" />
+          <div class="absolute w-4 h-4 border-white/75 border-t-2 border-r-2" style="top: -7px; right: -7px" />
+          <div class="absolute w-4 h-4 border-white/75 border-b-2 border-l-2" style="bottom: -7px; left: -7px" />
+          <div class="absolute w-4 h-4 border-white/75 border-b-2 border-r-2" style="bottom: -7px; right: -7px" />
+          <img
+            :src="centerImage.url"
+            :alt="centerImage.name"
+            :style="centerImgStyle"
+            draggable="false"
+          />
+        </div>
+
+        <!-- Right side items -->
+        <div
+          v-for="item in rightItems"
+          :key="`r-${item.index}`"
+          class="cursor-pointer overflow-hidden rounded-[3px] shrink-0 transition-[opacity,width,height] duration-[450ms] ease-in-out hover:brightness-125"
+          :style="sideStyle(item.dist)"
+          @click="goTo(item.index)"
+        >
+          <img
+            :src="item.url"
+            :alt="item.name"
+            class="w-full h-full object-cover block pointer-events-none"
+            draggable="false"
+          />
+        </div>
       </div>
 
-      <!-- Center item -->
-      <div
-        class="relative cursor-pointer shrink-0 transition-transform duration-300 ease-in-out hover:scale-[1.02]"
-        @click="openModal"
+      <!-- Right arrow -->
+      <button
+        class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white/70 hover:text-white border border-white/15 hover:border-white/40 transition-all backdrop-blur-sm"
+        aria-label="Image suivante"
+        @click="next"
       >
-        <div
-          class="absolute w-4 h-4 border-white/75 border-t-2 border-l-2"
-          style="top: -7px; left: -7px"
-        />
-        <div
-          class="absolute w-4 h-4 border-white/75 border-t-2 border-r-2"
-          style="top: -7px; right: -7px"
-        />
-        <div
-          class="absolute w-4 h-4 border-white/75 border-b-2 border-l-2"
-          style="bottom: -7px; left: -7px"
-        />
-        <div
-          class="absolute w-4 h-4 border-white/75 border-b-2 border-r-2"
-          style="bottom: -7px; right: -7px"
-        />
-        <img
-          :src="centerImage.url"
-          :alt="centerImage.name"
-          :style="centerImgStyle"
-          draggable="false"
-        />
-      </div>
-
-      <!-- Right side items -->
-      <div
-        v-for="item in rightItems"
-        :key="`r-${item.index}`"
-        class="cursor-pointer overflow-hidden rounded-[3px] shrink-0 transition-[opacity,width,height] duration-[450ms] ease-in-out hover:brightness-125"
-        :style="sideStyle(item.dist)"
-        @click="goTo(item.index)"
-      >
-        <img
-          :src="item.url"
-          :alt="item.name"
-          class="w-full h-full object-cover block pointer-events-none"
-          draggable="false"
-        />
-      </div>
+        <svg viewBox="0 0 24 24" fill="none" class="w-4 h-4 sm:w-5 sm:h-5">
+          <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Image name -->
