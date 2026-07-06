@@ -51,13 +51,9 @@ const rightItems = computed(() => {
 function sideStyle(dist) {
   const isMobile = windowWidth.value < 640
   const isTablet = windowWidth.value < 1024
-  const baseW = isMobile ? 60 : isTablet ? 80 : 100
-  const baseH = isMobile ? 90 : isTablet ? 120 : 150
-  const step = isMobile ? 0.2 : 0.16
-  const scale = Math.max(0.22, 1 - dist * step)
-  const w = Math.round(baseW * scale)
-  const h = Math.round(baseH * scale)
-  const opacity = Math.max(0.1, 0.78 - dist * 0.14)
+  const w = isMobile ? 50 : isTablet ? 70 : 90
+  const h = isMobile ? 75 : isTablet ? 105 : 135
+  const opacity = Math.max(0.15, 0.85 - dist * 0.12)
   return { width: `${w}px`, height: `${h}px`, opacity }
 }
 
@@ -122,7 +118,7 @@ onUnmounted(() => {
 <template>
   <div class="w-full flex flex-col items-center gap-4 sm:gap-[18px] pb-6 border-white/[0.07]">
     <!-- Season label -->
-    <p class="orb font-bold text-xl py-20 sm:text-2xl tracking-[0.1em] uppercase text-white">
+    <p class="orb font-bold text-xl py-20 sm:text-[40px] tracking-[0.1em] uppercase text-white">
       {{ season }}
     </p>
 
@@ -130,7 +126,7 @@ onUnmounted(() => {
     <div class="relative w-full">
       <!-- Left arrow -->
       <button
-        class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white/70 hover:text-white border border-white/15 hover:border-white/40 transition-all backdrop-blur-sm"
+        class="absolute left-3 sm:left-5 top-1/2 cursor-pointer -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white/70 hover:text-white border border-white/15 hover:border-white/40 transition-all backdrop-blur-sm"
         aria-label="Image précédente"
         @click="prev"
       >
@@ -193,7 +189,7 @@ onUnmounted(() => {
 
       <!-- Right arrow -->
       <button
-        class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white/70 hover:text-white border border-white/15 hover:border-white/40 transition-all backdrop-blur-sm"
+        class="absolute right-3 sm:right-5 cursor-pointer top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center rounded-full bg-black/50 hover:bg-black/80 text-white/70 hover:text-white border border-white/15 hover:border-white/40 transition-all backdrop-blur-sm"
         aria-label="Image suivante"
         @click="next"
       >
