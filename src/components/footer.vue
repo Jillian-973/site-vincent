@@ -13,7 +13,7 @@ const dolfiLogoUrl =
   <footer
     class="relative border-t border-white/10 text-white bg-cover bg-top bg-no-repeat"
     :class="bgClass"
-    :style="{ backgroundImage: `url(${footerBg})`, minHeight: '50vw' }"
+    :style="{ backgroundImage: `url(${footerBg})`, minHeight: '45vw' }"
   >
     <!-- Contenu -->
     <div class="relative z-10">

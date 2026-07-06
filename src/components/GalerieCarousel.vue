@@ -6,12 +6,15 @@ const props = defineProps({
   season: { type: String, required: true },
 })
 
-const SIDES = 5
-
 const currentIndex = ref(0)
 const modalOpen = ref(false)
+const windowWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1280)
 let autoTimer = null
 let pauseTimeout = null
+
+function onResize() {
+  windowWidth.value = window.innerWidth
+}
 
 function modIdx(i) {
   const n = props.images.length
@@ -20,9 +23,15 @@ function modIdx(i) {
 
 const centerImage = computed(() => props.images[modIdx(currentIndex.value)])
 
-// Left: rendered furthest → closest so they display correctly left-to-right
+// 2 sides on mobile (<640), 3 on tablet (<1024), 5 on desktop
+const visibleSides = computed(() => {
+  if (windowWidth.value < 640) return 2
+  if (windowWidth.value < 1024) return 3
+  return 5
+})
+
 const leftItems = computed(() => {
-  const count = Math.min(SIDES, props.images.length - 1)
+  const count = Math.min(visibleSides.value, props.images.length - 1)
   return Array.from({ length: count }, (_, i) => {
     const dist = count - i
     const index = modIdx(currentIndex.value - dist)
@@ -30,9 +39,8 @@ const leftItems = computed(() => {
   })
 })
 
-// Right: closest → furthest
 const rightItems = computed(() => {
-  const count = Math.min(SIDES, props.images.length - 1)
+  const count = Math.min(visibleSides.value, props.images.length - 1)
   return Array.from({ length: count }, (_, i) => {
     const dist = i + 1
     const index = modIdx(currentIndex.value + dist)
@@ -41,25 +49,43 @@ const rightItems = computed(() => {
 })
 
 function sideStyle(dist) {
-  const scale = Math.max(0.22, 1 - dist * 0.16)
-  const w = Math.round(86 * scale)
-  const h = Math.round(128 * scale)
+  const isMobile = windowWidth.value < 640
+  const isTablet = windowWidth.value < 1024
+  const baseW = isMobile ? 60 : isTablet ? 80 : 100
+  const baseH = isMobile ? 90 : isTablet ? 120 : 150
+  const step = isMobile ? 0.2 : 0.16
+  const scale = Math.max(0.22, 1 - dist * step)
+  const w = Math.round(baseW * scale)
+  const h = Math.round(baseH * scale)
   const opacity = Math.max(0.1, 0.78 - dist * 0.14)
-  return { width: `${w}px`, height: `${h}px`, opacity, flexShrink: '0' }
+  return { width: `${w}px`, height: `${h}px`, opacity }
 }
+
+const centerImgStyle = computed(() => {
+  const w = windowWidth.value
+  return {
+    maxWidth: w < 640 ? 'min(180px, 46vw)' : w < 1024 ? 'min(280px, 44vw)' : 'min(400px, 40vw)',
+    maxHeight: w < 640 ? '260px' : w < 1024 ? '340px' : '520px',
+    width: 'auto',
+    height: 'auto',
+    objectFit: 'contain',
+    borderRadius: '3px',
+    display: 'block',
+  }
+})
 
 function startAutoPlay() {
   clearInterval(autoTimer)
   autoTimer = setInterval(() => {
     currentIndex.value = modIdx(currentIndex.value + 1)
-  }, 3000)
+  }, 5000)
 }
 
 function goTo(index) {
   currentIndex.value = index
   clearInterval(autoTimer)
   clearTimeout(pauseTimeout)
-  pauseTimeout = setTimeout(startAutoPlay, 7000)
+  pauseTimeout = setTimeout(startAutoPlay, 5000)
 }
 
 function openModal() {
@@ -74,58 +100,121 @@ function closeModal() {
 }
 
 onMounted(() => {
+  window.addEventListener('resize', onResize)
   if (props.images.length > 1) startAutoPlay()
 })
 
 onUnmounted(() => {
+  window.removeEventListener('resize', onResize)
   clearInterval(autoTimer)
   clearTimeout(pauseTimeout)
 })
 </script>
 
 <template>
-  <div class="galerie-season">
-    <p class="season-label">{{ season }}</p>
+  <div class="flex flex-col items-center gap-4 sm:gap-[18px] pb-6 border-white/[0.07]">
+    <!-- Season label -->
+    <p class="orb font-bold text-xl py-20 sm:text-2xl tracking-[0.1em] uppercase text-white">
+      {{ season }}
+    </p>
 
-    <div class="carousel-strip">
+    <!-- Carousel strip -->
+    <div class="flex items-center justify-center gap-2 w-full overflow-hidden py-2 px-2">
+      <!-- Left side items -->
       <div
         v-for="item in leftItems"
         :key="`l-${item.index}`"
-        class="side-item"
+        class="cursor-pointer overflow-hidden rounded-[3px] shrink-0 transition-[opacity,width,height] duration-[450ms] ease-in-out hover:brightness-125"
         :style="sideStyle(item.dist)"
         @click="goTo(item.index)"
       >
-        <img :src="item.url" :alt="item.name" draggable="false" />
+        <img
+          :src="item.url"
+          :alt="item.name"
+          class="w-full h-full object-cover block pointer-events-none"
+          draggable="false"
+        />
       </div>
 
-      <div class="center-item" @click="openModal">
-        <div class="corner tl" />
-        <div class="corner tr" />
-        <div class="corner bl" />
-        <div class="corner br" />
-        <img :src="centerImage.url" :alt="centerImage.name" draggable="false" />
+      <!-- Center item -->
+      <div
+        class="relative cursor-pointer shrink-0 transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+        @click="openModal"
+      >
+        <div
+          class="absolute w-4 h-4 border-white/75 border-t-2 border-l-2"
+          style="top: -7px; left: -7px"
+        />
+        <div
+          class="absolute w-4 h-4 border-white/75 border-t-2 border-r-2"
+          style="top: -7px; right: -7px"
+        />
+        <div
+          class="absolute w-4 h-4 border-white/75 border-b-2 border-l-2"
+          style="bottom: -7px; left: -7px"
+        />
+        <div
+          class="absolute w-4 h-4 border-white/75 border-b-2 border-r-2"
+          style="bottom: -7px; right: -7px"
+        />
+        <img
+          :src="centerImage.url"
+          :alt="centerImage.name"
+          :style="centerImgStyle"
+          draggable="false"
+        />
       </div>
 
+      <!-- Right side items -->
       <div
         v-for="item in rightItems"
         :key="`r-${item.index}`"
-        class="side-item"
+        class="cursor-pointer overflow-hidden rounded-[3px] shrink-0 transition-[opacity,width,height] duration-[450ms] ease-in-out hover:brightness-125"
         :style="sideStyle(item.dist)"
         @click="goTo(item.index)"
       >
-        <img :src="item.url" :alt="item.name" draggable="false" />
+        <img
+          :src="item.url"
+          :alt="item.name"
+          class="w-full h-full object-cover block pointer-events-none"
+          draggable="false"
+        />
       </div>
     </div>
 
-    <p class="image-name">{{ centerImage.name }}</p>
+    <!-- Image name -->
+    <p
+      class="orb font-bold text-[0.8rem] sm:text-[20px] tracking-[0.18em] uppercase text-white/80 text-center min-h-[1.2em] px-4"
+    >
+      {{ centerImage.name }}
+    </p>
 
+    <!-- Modal -->
     <Teleport to="body">
       <Transition name="fade">
-        <div v-if="modalOpen" class="modal-overlay" @click.self="closeModal">
-          <button class="modal-close" aria-label="Fermer" @click="closeModal">×</button>
-          <div class="modal-inner">
-            <img :src="centerImage.url" :alt="centerImage.name" class="modal-img" />
-            <p class="modal-name">{{ centerImage.name }}</p>
+        <div
+          v-if="modalOpen"
+          class="fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center"
+          @click.self="closeModal"
+        >
+          <button
+            class="absolute top-4 right-5 text-3xl leading-none text-white bg-transparent border-none cursor-pointer opacity-60 hover:opacity-100 transition-opacity"
+            aria-label="Fermer"
+            @click="closeModal"
+          >
+            ×
+          </button>
+          <div class="flex flex-col items-center gap-5 px-4 sm:px-6 max-w-full">
+            <img
+              :src="centerImage.url"
+              :alt="centerImage.name"
+              class="max-w-[90vw] sm:max-w-[min(90vw,820px)] max-h-[75vh] sm:max-h-[80vh] object-contain rounded-md"
+            />
+            <p
+              class="orb text-[0.85rem] sm:text-[0.95rem] tracking-[0.12em] text-white/75 text-center px-4"
+            >
+              {{ centerImage.name }}
+            </p>
           </div>
         </div>
       </Transition>
@@ -134,143 +223,15 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.galerie-season {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
-  padding: 36px 0 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+.orb {
+  font-family: 'Orbitron', sans-serif;
 }
-
-.season-label {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 0.7rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
 }
-
-.carousel-strip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  overflow: hidden;
-  padding: 8px 0;
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
-
-.side-item {
-  cursor: pointer;
-  transition: opacity 0.45s ease, width 0.45s ease, height 0.45s ease;
-  overflow: hidden;
-  border-radius: 3px;
-  flex-shrink: 0;
-}
-.side-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-}
-.side-item:hover {
-  filter: brightness(1.25);
-}
-
-.center-item {
-  position: relative;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-.center-item:hover {
-  transform: scale(1.02);
-}
-.center-item img {
-  display: block;
-  max-width: min(260px, 52vw);
-  max-height: 380px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 3px;
-}
-
-/* Corner brackets */
-.corner {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: rgba(255, 255, 255, 0.75);
-  border-style: solid;
-  border-width: 0;
-}
-.corner.tl { top: -7px; left: -7px; border-top-width: 2px; border-left-width: 2px; }
-.corner.tr { top: -7px; right: -7px; border-top-width: 2px; border-right-width: 2px; }
-.corner.bl { bottom: -7px; left: -7px; border-bottom-width: 2px; border-left-width: 2px; }
-.corner.br { bottom: -7px; right: -7px; border-bottom-width: 2px; border-right-width: 2px; }
-
-.image-name {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  min-height: 1.2em;
-}
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.modal-close {
-  position: absolute;
-  top: 18px;
-  right: 24px;
-  font-size: 2rem;
-  line-height: 1;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s;
-}
-.modal-close:hover { opacity: 1; }
-.modal-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 0 24px;
-}
-.modal-img {
-  max-width: min(90vw, 820px);
-  max-height: 80vh;
-  object-fit: contain;
-  border-radius: 6px;
-}
-.modal-name {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.75);
-  text-align: center;
-}
-
-/* Transition */
-.fade-enter-active, .fade-leave-active { transition: opacity 0.25s ease; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>
