@@ -41,7 +41,7 @@ const activites = [
 
 <template>
   <div
-    class="relative min-h-screen bg-cover bg-top bg-no-repeat flex flex-col justify-between"
+    class="relative min-h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-between"
     :style="{ backgroundImage: `url(${bgImage})` }"
   >
     <header>
@@ -50,8 +50,13 @@ const activites = [
 
     <div class="flex flex-col items-center justify-center text-center gap-4 px-4">
       <h1>
-        <img src="./assets/mesotes.png" alt="Mesotes titre" class="w-36 sm:w-50 md:w-200" />
+        <img
+          src="./assets/mesotes.png"
+          alt="Mesotes titre"
+          class="w-36 sm:w-52 md:w-72 lg:w-[420px] xl:w-[560px]"
+        />
       </h1>
+      <!--
       <div
         class="rounded-2xl px-4 sm:px-10 md:px-25 py-2"
         style="background-color: var(--color-cosmic-white); backdrop-filter: blur(3px)"
@@ -60,7 +65,7 @@ const activites = [
           Plateforme libre de ressources pédagogiques innovantes <br />
           pour se former autrement à l’intelligence artificielle
         </p>
-      </div>
+      </div>-->
     </div>
 
     <div class="flex flex-col items-center justify-center text-center gap-4 pb-6">
@@ -68,7 +73,7 @@ const activites = [
         @click="scrollTo('activites')"
         src="./assets/mouse.png"
         alt="Mouse Icon"
-        class="h-14 sm:h-16 md:h-20 cursor-pointer animate-bounce"
+        class="h-10 sm:h-12 md:h-14 lg:h-16 cursor-pointer animate-bounce"
       />
     </div>
 
@@ -84,7 +89,11 @@ const activites = [
         Nos activités pédagogiques
       </h2>
       <p class="text-base sm:text-lg md:text-[20px] mt-8">
-        Fait défilé les activités et plonge dans le monde de l'IA générative !
+        Projet lancé en mai 2026 et porté par des étudiants du campus <br />
+        lyonnais de MyDigitalSchool sous la supervision d’un formateur <br />
+        indépendant en intelligence artificielle générative, la plateforme <br />
+        s’adresse aux professionnels qui suivent une formation comme <br />
+        aux internautes désireux d’en apprendre davantage sur le sujet.
       </p>
       <Carousel :slides="activites" />
     </div>
