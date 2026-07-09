@@ -23,6 +23,32 @@ import portfolioRomain from './assets/portfolio-romain.png'
 import portfolioElvan from './assets/portfolio-elvan.png'
 import portfolioKillian from './assets/portfolio-killian.png'
 
+import linkedinPartenaire from './assets/linkedin-partenaires.png'
+import websitePartenaire from './assets/link-partenaires.png'
+const dolfiLogoUrl =
+  'https://dolfi-formation.fr/wp-content/uploads/2024/10/logo-dolfi-2025-blanc.webp'
+
+// Ajouter les imports des images partenaires ici (avatar + websiteImg)
+// import partnerXAvatar from './assets/partner-x-avatar.png'
+// import partnerXWebsiteImg from './assets/partner-x-website.png'
+
+function formatBio(bio) {
+  // Sépare les paires Q&A (fin de phrase "." ou "!" avant majuscule)
+  const pairs = bio.split(/(?<=[.!])\s*(?=[A-ZÀÂÈÉÊËÎÏÔÙÛÜŸ])/)
+  // Dans chaque paire, sépare la question "?" de la réponse
+  return pairs.map((pair) => pair.split(/(?<=\?)\s*/).filter(Boolean))
+}
+
+const partners = [
+  {
+    name: 'Dolfi',
+    avatar: dolfiLogoUrl,
+    linkedinUrl: null,
+    websiteUrl: null,
+    bio: "Dolfi est un organisme de formation spécialisé dans l'IA générative, offrant des programmes adaptés aux professionnels et aux passionnés. Leur expertise permet de comprendre et d'exploiter les technologies d'IA de manière efficace et éthique.",
+  },
+]
+
 const members = [
   {
     name: 'Vincent',
@@ -36,7 +62,7 @@ const members = [
     lookingLeft: false,
     avatar: vincentImg,
     cardAvatar: vincentCardImg,
-    bio: "Ceci est un texte d'exemple, écrit simplement pour illustrer à quoi peut ressembler un passage un peu plus long. Il ne raconte rien de particulier : son seul but est d'occuper l'espace et de montrer comment les phrases peuvent s'enchaîner les unes après les autres pour former un paragraphe cohérent.",
+    bio: 'Ce que j’aime faire en dehors du cadre professionnel ? - Lire et nager. Ce qu’il y a dans l’entreprise ou chez les clients pour qui j’ai envie de travailler ? - De la transparence et une démarche d’amélioration continue. Mon outil numérique de prédilection pour mettre en œuvre des projets premium ? - Les intelligences artificielles génératives, évidemment. Ma principale référence et source d’inspiration dans le domaine du digital ? - Mes stagiaires !Ma plus grande satisfaction dans la création de la plateforme Mésotès ? - La coordination avec succès d’une équipe d’étudiants compétents et motivés.',
   },
   {
     name: 'Romain',
@@ -50,7 +76,7 @@ const members = [
     lookingLeft: true,
     avatar: romainImg,
     cardAvatar: romainCardImg,
-    bio: "Je me suis occupé de désigner le site sur lequel vous êtes en train de naviguer, j'ai réfléchi en particulier à l'harmonie visuelle et technique du projet pour que vous puissiez en profiter de la meilleure des manières. C'est également grâce à moi et Elvan que tous l'univers créatif de ce projet est né pour vous faire découvrir l'IA générative d'une manière inédite.",
+    bio: 'Ce que j’aime faire en dehors du cadre professionnel ? - Écouter de la musique et regarder des séries télévisées. Ce qu’il y a dans l’entreprise ou chez les clients pour qui j’ai envie de travailler ? - De la confiance. Mon outil numérique de prédilection pour mettre en œuvre des projets premium ? - Figma. Ma principale référence et source d’inspiration dans le domaine du digital ? - Marcelo Cedeno. Ma plus grande satisfaction dans la création de la plateforme Mésotès ? - Le système de carrousel et de cartes pour présenter les ressources.',
   },
   {
     name: 'Elvan',
@@ -64,7 +90,7 @@ const members = [
     lookingLeft: false,
     avatar: elvanImg,
     cardAvatar: elvanCardImg,
-    bio: "Je me suis occupé de toute la direction artistique du projet : création du logo, choix des couleurs et des typographies, ainsi que la conception des designs du site, notamment la page d'accueil et les éléments liés aux activités. J'ai travaillé à donner une identité visuelle cohérente et accessible pour que l'expérience soit claire pour tout le monde.",
+    bio: 'Ce que j’aime faire en dehors du cadre professionnel ? - La course à pied et la randonnée. Ce qu’il y a dans l’entreprise ou chez les clients pour qui j’ai envie de travailler ? - Une valorisation de la créativité. Mon outil numérique de prédilection pour mettre en œuvre des projets premium ? - Photoshop. Ma principale référence et source d’inspiration dans le domaine du digital ? - Aziatack. Ma plus grande satisfaction dans la création de la plateforme Mésotès ? - Le logo, inspiré du buste de Marc-Aurèle.',
   },
   {
     name: 'Killian',
@@ -78,7 +104,7 @@ const members = [
     lookingLeft: true,
     avatar: killianImg,
     cardAvatar: killianCardImg,
-    bio: "Je suis développeur web freelance et j'ai été stagiaire pour ce projet, chargé de la conception et du développement d'une plateforme web sur laquelle les utilisateurs réalisent leurs activités en ligne. J'interviens sur la création des fonctionnalités et l'intégration des différentes interfaces du site. Au cours de mon stage, j'ai participé à la mise en place et à l'évolution du site afin de garantir une navigation fluide, interactive et adaptée aux besoins des utilisateurs.",
+    bio: 'Ce que j’aime faire en dehors du cadre professionnel ? - De l’ultimate, C’est un sport d’équipe avec un frisbee. Ce qu’il y a dans l’entreprise ou chez les clients pour qui j’ai envie de travailler ? - Du respect. Mon outil numérique de prédilection pour mettre en œuvre des projets premium ? - Visual Studio Code. Ma principale référence et source d’inspiration dans le domaine du digital ? - Clemzou. Ma plus grande satisfaction dans la création de la plateforme Mésotès ? - Tout ce que vous ne voyez pas et qui permet pourtant au site de fonctionner.',
   },
 ]
 </script>
@@ -191,11 +217,13 @@ const members = [
             class="flex-1 flex flex-col gap-2"
             :class="index % 2 === 0 ? 'sm:items-start' : 'sm:items-end'"
           >
-            <p
-              class="font-orbitron font-bold bg-white text-black rounded-3xl shadow-lg px-5 py-4 text-sm sm:text-base leading-relaxed"
+            <div
+              class="font-orbitron font-bold bg-white text-black rounded-3xl shadow-lg px-5 py-4 text-sm sm:text-base leading-relaxed flex flex-col gap-6"
             >
-              {{ member.bio }}
-            </p>
+              <div v-for="(pair, i) in formatBio(member.bio)" :key="i" class="flex flex-col gap-1">
+                <p v-for="(line, j) in pair" :key="j">{{ line }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

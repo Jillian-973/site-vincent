@@ -138,6 +138,42 @@ const albumAiTools = [
     <header class="shrink-0">
       <Header />
     </header>
+    <div style="width: 100%">
+      <div style="position: relative; padding-bottom: 56.25%; padding-top: 0; height: 0">
+        <iframe
+          title="Le disque d'or"
+          frameborder="0"
+          width="1200"
+          height="675"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+          src="https://view.genially.com/6a33fe4f84a2ab3b91b2b76a"
+          type="text/html"
+          allowscriptaccess="always"
+          allowfullscreen="true"
+          scrolling="yes"
+          allownetworking="all"
+        ></iframe>
+      </div>
+    </div>
+
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/Unuy6x0dhKQ?si=q9blmPgmuixRsDDA"
+      title="YouTube video player"
+      frameborder="0"
+      allow="
+        accelerometer;
+        autoplay;
+        clipboard-write;
+        encrypted-media;
+        gyroscope;
+        picture-in-picture;
+        web-share;
+      "
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
 
     <Footer class="shrink-0" />
 
