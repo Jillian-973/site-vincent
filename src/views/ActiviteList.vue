@@ -27,7 +27,7 @@ const activities = [
     title: "Décorateur d'intérieur",
     description:
       'Crée une pièce entière grâce à une IA : décris ton style et laisse la magie opérer.',
-    duration: '~10 minutes',
+    duration: '10 minutes',
     tag: "Génération d'image",
     accentColor: 'var(--color-neon-sunset)',
     image: decorateurImg,
@@ -37,7 +37,7 @@ const activities = [
     id: 'disque-d-or',
     title: "Le Disque d'or",
     description: 'Compose une musique avec Suno et imagine la pochette de ton album avec une IA.',
-    duration: '~20 minutes',
+    duration: '20 minutes',
     tag: 'Création musicale',
     accentColor: 'var(--color-synthwave-magenta)',
     image: djImg,
@@ -91,7 +91,7 @@ function faceStyle(activity) {
       <Header />
     </header>
 
-    <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12 gap-10 sm:gap-14">
+    <main class="flex-1 flex flex-col items-center px-4 sm:px-6 py-8 sm:py-12 gap-10 sm:gap-26">
       <!-- Texte intro -->
       <div class="text-center max-w-6xl px-2">
         <p
