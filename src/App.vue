@@ -84,16 +84,25 @@ const activites = [
   </div>
 
   <div class="text-center min-h-screen flex flex-col" style="background-color: #000000">
-    <div class="py-8 md:py-12 px-4">
-      <h2 id="activites" class="text-4xl sm:text-6xl md:text-[80px] font-bold">
-        Nos activités pédagogiques
-      </h2>
-      <p class="text-base sm:text-lg md:text-[20px] mt-8">
+    <div id="activites" class="py-8 md:py-12 px-4">
+      <p
+        class="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[30px] leading-relaxed mt-16 max-w-6xl mx-auto"
+        style="font-family: 'Orbitron', sans-serif"
+      >
         Projet lancé en mai 2026 et porté par des étudiants du campus <br />
         lyonnais de MyDigitalSchool sous la supervision d’un formateur <br />
         indépendant en intelligence artificielle générative, la plateforme <br />
         s’adresse aux professionnels qui suivent une formation comme <br />
         aux internautes désireux d’en apprendre davantage sur le sujet.
+      </p>
+      <p
+        class="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[30px] leading-relaxed mt-16 max-w-6xl mx-auto"
+        style="font-family: 'Orbitron', sans-serif"
+      >
+        philosophie gréco-romaine antique, et notamment chez <br />
+        Aristote, la notion de « mésotès » désigne la voie du juste milieu. <br />
+        C’est précisément ce type de regard à la fois mesuré et nuancé <br />
+        que nous avons pour ambition de développer ici à propos de l’IA.
       </p>
       <Carousel :slides="activites" />
     </div>
