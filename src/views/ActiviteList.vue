@@ -16,7 +16,7 @@ const activities = [
     title: 'Le Projecteur',
     description:
       'Échangez avec un assistant conversationnel pour structurer votre projet IA et repartez avec une synthèse claire et exploitable.',
-    duration: '10-15 min',
+    duration: '10-15 minutes',
     tag: 'Cadrage de projet',
     accentColor: 'var(--color-electric-violet)',
     image: projecteurImg,
@@ -27,7 +27,7 @@ const activities = [
     title: "Décorateur d'intérieur",
     description:
       'Crée une pièce entière grâce à une IA : décris ton style et laisse la magie opérer.',
-    duration: '~10 min',
+    duration: '~10 minutes',
     tag: "Génération d'image",
     accentColor: 'var(--color-neon-sunset)',
     image: decorateurImg,
@@ -37,7 +37,7 @@ const activities = [
     id: 'disque-d-or',
     title: "Le Disque d'or",
     description: 'Compose une musique avec Suno et imagine la pochette de ton album avec une IA.',
-    duration: '~20 min',
+    duration: '~20 minutes',
     tag: 'Création musicale',
     accentColor: 'var(--color-synthwave-magenta)',
     image: djImg,
@@ -118,7 +118,7 @@ function faceStyle(activity) {
           <div class="card-inner">
             <!-- Recto : image (si dispo) ou gradient + titre -->
             <div
-              class="card-face rounded-2xl flex items-end p-4 sm:p-5"
+              class="card-face rounded-2xl flex items-start justify-center p-4 sm:p-5"
               :style="faceStyle(activity)"
             >
               <span
@@ -131,7 +131,7 @@ function faceStyle(activity) {
 
             <!-- Verso : image (si dispo) ou verre dépoli + infos -->
             <div
-              class="card-face card-back rounded-2xl border border-white/20 p-4 sm:p-6 flex flex-col justify-between overflow-hidden"
+              class="card-face card-back rounded-2xl border border-white/20 p-4 sm:p-6 flex flex-col justify-between text-center overflow-hidden"
               :class="!activity.image ? 'bg-retrogrid-black/80 backdrop-blur-md' : ''"
               :style="faceStyle(activity)"
             >
@@ -143,7 +143,7 @@ function faceStyle(activity) {
                 <p class="text-white/75 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4">
                   {{ activity.description }}
                 </p>
-                <div class="flex flex-col items-start gap-2">
+                <div class="flex flex-col items-center gap-2">
                   <span
                     v-if="activity.tag"
                     class="text-sm sm:text-base text-white rounded-full px-3 py-1.5"

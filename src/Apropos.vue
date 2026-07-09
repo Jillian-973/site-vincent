@@ -95,7 +95,7 @@ const members = [
         class="flex-1 flex flex-col items-center justify-center gap-10 sm:gap-16 py-10 px-4 sm:px-8"
       >
         <h1 class="text-3xl sm:text-5xl font-bold text-white text-center uppercase leading-[1.4]">
-          L'équipe
+          équipe
         </h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 justify-items-center">

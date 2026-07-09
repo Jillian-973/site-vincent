@@ -15,7 +15,7 @@ const scrollTo = (id) => {
 const activites = [
   {
     id: 'projecteur',
-    title: 'Le Projecteur',
+    title: 'LE PROJECTEUR',
     image: projecteur2Img,
     gradient:
       'linear-gradient(to bottom right, var(--color-synthwave-magenta), var(--color-electric-violet))',
@@ -23,14 +23,14 @@ const activites = [
   },
   {
     id: 'decorateur',
-    title: "Décorateur d'intérieur",
+    title: "LE DÉCORATEUR D\'INTÉRIEUR",
     image: decorateur2Img,
     gradient: 'linear-gradient(to bottom right, var(--color-electric-violet), var(--color-blue))',
     url: '/ressources.html#/decorateur',
   },
   {
     id: 'disque-d-or',
-    title: 'Le DJ',
+    title: "LE DISQUE D'OR",
     image: dj2Img,
     gradient:
       'linear-gradient(to bottom right, var(--color-neon-sunset), var(--color-synthwave-magenta))',
@@ -95,7 +95,7 @@ const activites = [
           href="https://www.mydigitalschool.com/ecole-multimedia-lyon"
           target="_blank"
           rel="noopener noreferrer"
-          class="underline"
+          class="text-electric-violet underline underline-offset-4 hover:opacity-80 transition-opacity"
           >MyDigitalSchool</a
         >
         sous la supervision d’un formateur <br />
@@ -108,15 +108,15 @@ const activites = [
         style="font-family: 'Orbitron', sans-serif"
       >
         Dans la philosophie gréco-romaine antique, et notamment chez <br />
-        Aristote, la notion de
+        Aristote, la notion de «
         <a
           href="https://www.linkedin.com/pulse/se-soucier-de-trouver-le-juste-milieu-%C3%A9ric-delassus-owwhe/"
           target="_blank"
           rel="noopener noreferrer"
-          class="underline"
+          class="text-electric-violet underline underline-offset-4 hover:opacity-80 transition-opacity"
           >mésotès</a
         >
-        désigne la voie du juste milieu. <br />
+        » désigne la voie du juste milieu. <br />
         C’est précisément ce type de regard à la fois mesuré et nuancé <br />
         que nous avons pour ambition de développer ici à propos de l’IA.
       </p>

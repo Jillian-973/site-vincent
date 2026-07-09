@@ -26,7 +26,7 @@ const menuOpen = ref(false)
       <li
         class="h-8 px-3 sm:px-10 md:px-14 rounded-xl border-2 border-fuchsia-400 bg-fuchsia-100/70 text-black font-bold text-xs sm:text-base leading-none flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:scale-105 shadow-[0_0_18px_4px_rgba(217,70,239,0.7)] hover:shadow-[0_0_30px_8px_rgba(217,70,239,0.95)]"
       >
-        <a href="/a-propos">A propos</a>
+        <a href="/a-propos">À propos</a>
       </li>
     </ul>
 
@@ -38,10 +38,20 @@ const menuOpen = ref(false)
     >
       <Transition name="icon" mode="out-in">
         <svg v-if="menuOpen" key="close" viewBox="0 0 24 24" fill="none" class="w-6 h-6">
-          <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path
+            d="M6 18L18 6M6 6l12 12"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
         <svg v-else key="open" viewBox="0 0 24 24" fill="none" class="w-6 h-6">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
       </Transition>
     </button>

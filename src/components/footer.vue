@@ -26,7 +26,7 @@ const dolfiLogoUrl =
           class="flex flex-wrap items-end justify-center gap-20 sm:gap-30 lg:gap-50 pb-6 sm:pb-12"
         >
           <a
-            href="#"
+            href="https://www.instagram.com/mesotes.fr/"
             target="_blank"
             rel="noopener noreferrer"
             class="transition-transform duration-300 hover:scale-110"
@@ -52,7 +52,7 @@ const dolfiLogoUrl =
           </a>
 
           <a
-            href="#"
+            href="https://www.linkedin.com/company/mesotes/about/"
             target="_blank"
             rel="noopener noreferrer"
             class="transition-transform duration-300 hover:scale-110"
