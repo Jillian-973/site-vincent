@@ -11,27 +11,12 @@ const dolfiLogoUrl =
 
 <template>
   <footer
-    class="relative border-t border-white/10 text-white bg-cover bg-top bg-no-repeat"
+    class="relative border-t border-white/10 text-white bg-cover bg-top bg-no-repeat flex flex-col justify-end"
     :class="bgClass"
     :style="{ backgroundImage: `url(${footerBg})`, minHeight: '45vw' }"
   >
     <!-- Contenu -->
     <div class="relative z-10">
-      <!-- Ligne principale : branding + nav -->
-      <div
-        class="max-w-6xl mx-auto px-6 pt-10 pb-6 flex flex-col sm:flex-row items-center justify-between gap-6"
-      >
-        <div class="text-center sm:text-center">
-          <img src="../assets/logo.png" alt="Mésotès" class="h-12 sm:h-16 mb-1" />
-          <p class="text-white/50 text-sm">Plateforme pédagogique IA</p>
-        </div>
-
-        <nav class="flex gap-8 text-sm text-white/60">
-          <a href="/" class="hover:text-white transition-colors">Accueil</a>
-          <a href="/ressources" class="hover:text-white transition-colors">Ressources</a>
-          <a href="/a-propos" class="hover:text-white transition-colors">À propos</a>
-        </nav>
-      </div>
 
       <!-- Partenaires -->
       <div class="max-w-6xl mx-auto px-6 py-6 border-t border-white/10">
