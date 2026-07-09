@@ -122,7 +122,7 @@ function faceStyle(activity) {
               :style="faceStyle(activity)"
             >
               <span
-                class="relative z-10 text-white text-lg sm:text-xl font-bold drop-shadow-lg"
+                class="text-white text-lg sm:text-xl font-bold drop-shadow-lg"
                 style="font-family: 'Orbitron', sans-serif"
               >
                 {{ activity.title }}
