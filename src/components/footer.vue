@@ -22,40 +22,51 @@ const dolfiLogoUrl =
     <div class="relative z-10">
       <!-- Réseaux sociaux -->
       <div class="max-w-6xl mx-auto px-6 sm:px-10 py-8 sm:py-10 border-t border-white/10">
-        <p
-          class="text-sm sm:text-base lg:text-lg font-semibold uppercase tracking-widest text-white/90 text-center mb-6 sm:mb-8"
+        <div
+          class="flex flex-wrap items-end justify-center gap-20 sm:gap-30 lg:gap-50 pb-6 sm:pb-12"
         >
-          Réseaux sociaux
-        </p>
-        <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16">
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
             class="transition-transform duration-300 hover:scale-110"
           >
-            <img :src="instagramLogo" alt="Instagram" class="h-14 sm:h-16 lg:h-20 object-contain" />
+            <img
+              :src="instagramLogo"
+              alt="Instagram"
+              class="h-[168px] sm:h-28 lg:h-40 object-contain"
+            />
           </a>
+
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
             class="transition-transform duration-300 hover:scale-110"
           >
-            <img :src="linkedinLogo" alt="LinkedIn" class="h-14 sm:h-16 lg:h-20 object-contain" />
+            <img
+              :src="youtubeLogo"
+              alt="YouTube"
+              class="h-[168px] sm:h-28 lg:h-40 object-contain"
+            />
           </a>
+
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
             class="transition-transform duration-300 hover:scale-110"
           >
-            <img :src="youtubeLogo" alt="YouTube" class="h-14 sm:h-16 lg:h-20 object-contain" />
+            <img
+              :src="linkedinLogo"
+              alt="LinkedIn"
+              class="h-[168px] sm:h-28 lg:h-40 object-contain"
+            />
           </a>
         </div>
       </div>
 
-      <!-- Bas de page : liens légaux -->
+      <!-- Bas de page : liens légaux 
       <div
         class="max-w-6xl mx-auto px-6 sm:px-10 py-5 sm:py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6"
       >
@@ -70,7 +81,7 @@ const dolfiLogoUrl =
         >
           Mentions légales
         </a>
-      </div>
+      </div>-->
     </div>
   </footer>
 </template>

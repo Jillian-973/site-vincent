@@ -1,7 +1,6 @@
 <script setup>
 import Header from './components/header.vue'
 import Footer from './components/footer.vue'
-import LinkedInIcon from './components/LinkedInIcon.vue'
 import vincentImg from './assets/vincent logo mode.png'
 import romainImg from './assets/romain logo mode.png'
 import elvanImg from './assets/elvan mode logo.png'
@@ -10,14 +9,25 @@ import vincentCardImg from './assets/vincent.png'
 import romainCardImg from './assets/romain.png'
 import elvanCardImg from './assets/elvan.png'
 import killianCardImg from './assets/killian.png'
+import linkedinFallback from './assets/linkedin_footer.png'
+import linkedinKillian from './assets/linkedin-killian.png'
+import linkedinVincent from './assets/linkedin-vincent.png'
+import linkedinRomain from './assets/linkedin-romain.png'
+import linkedinElvan from './assets/linkedin-elvan.png'
+
+import portfolioVincent from './assets/portfolio-vincent.png'
+import portfolioRomain from './assets/portfolio-romain.png'
+import portfolioElvan from './assets/portfolio-elvan.png'
+import portfolioKillian from './assets/portfolio-killian.png'
 
 const members = [
   {
     name: 'Vincent',
     roleTag: 'Formateur en IA',
-    hasPortfolio: false,
-    portfolioUrl: '#',
     linkedinUrl: 'https://www.linkedin.com/in/vincent-grange/',
+    portfolioUrl: null,
+    linkedinImg: linkedinVincent,
+    portfolioImg: portfolioVincent,
     color: 'bg-[#FB8C32]',
     tagColor: 'bg-[#774115]',
     lookingLeft: false,
@@ -28,9 +38,10 @@ const members = [
   {
     name: 'Romain',
     roleTag: 'Designer UX/UI',
-    hasPortfolio: false,
-    portfolioUrl: '#',
     linkedinUrl: 'https://www.linkedin.com/in/romain-weiss-66820b395/',
+    portfolioUrl: null,
+    linkedinImg: linkedinRomain,
+    portfolioImg: portfolioRomain,
     color: 'bg-[#F66074]',
     tagColor: 'bg-[#8E2331]',
     lookingLeft: true,
@@ -41,44 +52,49 @@ const members = [
   {
     name: 'Elvan',
     roleTag: 'Directeur artistique',
-    hasPortfolio: false,
-    portfolioUrl: '#',
     linkedinUrl: 'https://www.linkedin.com/in/elvan-kemence/',
+    portfolioUrl: null,
+    linkedinImg: linkedinElvan,
+    portfolioImg: portfolioElvan,
     color: 'bg-[#8D4F98]',
     tagColor: 'bg-[#631571]',
     lookingLeft: false,
     avatar: elvanImg,
     cardAvatar: elvanCardImg,
-    bio: 'Je me suis occupé de toute la direction artistique du projet : création du logo, choix des couleurs et des typographies, ainsi que la conception des designs du site, notamment la page d’accueil et les éléments liés aux activités. J’ai travaillé à donner une identité visuelle cohérente et accessible pour que l’expérience soit claire pour tout le monde.',
+    bio: "Je me suis occupé de toute la direction artistique du projet : création du logo, choix des couleurs et des typographies, ainsi que la conception des designs du site, notamment la page d'accueil et les éléments liés aux activités. J'ai travaillé à donner une identité visuelle cohérente et accessible pour que l'expérience soit claire pour tout le monde.",
   },
   {
     name: 'Killian',
     roleTag: 'Développeur web',
-    hasPortfolio: true,
-    portfolioUrl: 'https://jillian-973.github.io/Dev_Portfolio/',
     linkedinUrl: 'https://www.linkedin.com/in/killian-entertainment/',
+    portfolioUrl: 'https://jillian-973.github.io/Dev_Portfolio/',
+    linkedinImg: linkedinKillian,
+    portfolioImg: portfolioKillian,
     color: 'bg-[#51329C]',
     tagColor: 'bg-[#2A1167]',
     lookingLeft: true,
     avatar: killianImg,
     cardAvatar: killianCardImg,
-    bio: "Je suis développeur web freelance et j'ai été stagiaire pour ce projet, chargé de la conception et du développement d’une plateforme web sur laquelle les utilisateurs réalisent leurs activités en ligne. J’interviens sur la création des fonctionnalités et l’intégration des différentes interfaces du site. Au cours de mon stage, j’ai participé à la mise en place et à l’évolution du site afin de garantir une navigation fluide, interactive et adaptée aux besoins des utilisateurs.",
+    bio: "Je suis développeur web freelance et j'ai été stagiaire pour ce projet, chargé de la conception et du développement d'une plateforme web sur laquelle les utilisateurs réalisent leurs activités en ligne. J'interviens sur la création des fonctionnalités et l'intégration des différentes interfaces du site. Au cours de mon stage, j'ai participé à la mise en place et à l'évolution du site afin de garantir une navigation fluide, interactive et adaptée aux besoins des utilisateurs.",
   },
 ]
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col" style="background-color: var(--color-retrogrid-black)">
-    <header class="shrink-0">
-      <Header />
-    </header>
+  <div class="flex flex-col" style="background-color: var(--color-retrogrid-black)">
+    <!-- Section hero : prend exactement un écran entier (header inclus) -->
+    <section class="min-h-screen flex flex-col">
+      <header class="shrink-0">
+        <Header />
+      </header>
 
-    <main class="flex-1 px-4 sm:px-8">
-      <!-- Cartes personnages : occupe tout l'écran, le reste se découvre au scroll -->
-      <section
-        class="min-h-screen flex flex-col items-center justify-center gap-10 sm:gap-16 py-10"
+      <div
+        class="flex-1 flex flex-col items-center justify-center gap-10 sm:gap-16 py-10 px-4 sm:px-8"
       >
-        <h1 class="text-3xl sm:text-5xl font-bold text-white text-center">L'équipe S-1</h1>
+        <h1 class="text-3xl sm:text-5xl font-bold text-white text-center uppercase leading-[1.4]">
+          L'équipe <br />
+          saison 1
+        </h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8 justify-items-center">
           <div
@@ -107,9 +123,11 @@ const members = [
             />
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Présentations -->
+    <!-- Présentations — visibles au scroll -->
+    <main class="px-4 sm:px-8">
       <div class="max-w-4xl mx-auto flex flex-col gap-12 sm:gap-16 py-10 sm:py-16">
         <div
           v-for="(member, index) in members"
@@ -117,49 +135,63 @@ const members = [
           class="flex flex-col sm:items-center gap-3"
           :class="index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'"
         >
-          <div
-            class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-full border-4 border-white shadow-lg overflow-hidden flex items-center justify-center"
-            :class="member.color"
-          >
-            <img
-              :src="member.avatar"
-              :alt="`Portrait de ${member.name}`"
-              class="w-full h-full object-cover"
-              :class="{ '-scale-x-100': member.lookingLeft }"
-            />
+          <!-- Avatar + icônes réseaux sous le cercle -->
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <div
+              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg overflow-hidden flex items-center justify-center"
+              :class="member.color"
+            >
+              <img
+                :src="member.avatar"
+                :alt="`Portrait de ${member.name}`"
+                class="w-full h-full object-cover"
+                :class="{ '-scale-x-100': member.lookingLeft }"
+              />
+            </div>
+
+            <!-- Icônes LinkedIn + Portfolio -->
+            <div class="flex gap-2">
+              <!-- LinkedIn -->
+              <component
+                :is="member.linkedinImg && member.linkedinUrl ? 'a' : 'span'"
+                :href="member.linkedinImg && member.linkedinUrl ? member.linkedinUrl : undefined"
+                :target="member.linkedinImg && member.linkedinUrl ? '_blank' : undefined"
+                :rel="member.linkedinImg && member.linkedinUrl ? 'noopener noreferrer' : undefined"
+                :class="
+                  member.linkedinImg && member.linkedinUrl
+                    ? 'transition-transform hover:scale-110 cursor-pointer'
+                    : 'opacity-35 grayscale cursor-not-allowed pointer-events-none'
+                "
+              >
+                <img
+                  :src="member.linkedinImg ?? linkedinFallback"
+                  alt="LinkedIn"
+                  class="h-8 w-8 object-contain"
+                />
+              </component>
+
+              <!-- Portfolio -->
+              <component
+                :is="member.portfolioUrl ? 'a' : 'span'"
+                :href="member.portfolioUrl ?? undefined"
+                :target="member.portfolioUrl ? '_blank' : undefined"
+                :rel="member.portfolioUrl ? 'noopener noreferrer' : undefined"
+                :class="
+                  member.portfolioUrl
+                    ? 'transition-transform hover:scale-110 cursor-pointer'
+                    : 'opacity-35 grayscale cursor-not-allowed pointer-events-none'
+                "
+              >
+                <img :src="member.portfolioImg" alt="Portfolio" class="h-8 w-8 object-contain" />
+              </component>
+            </div>
           </div>
 
+          <!-- Bulle bio -->
           <div
             class="flex-1 flex flex-col gap-2"
             :class="index % 2 === 0 ? 'sm:items-start' : 'sm:items-end'"
           >
-            <div class="flex items-center gap-2 ml-6">
-              <a
-                :href="member.linkedinUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Profil LinkedIn"
-                class="bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 hover:bg-sky-200 transition-colors"
-              >
-                linkedin
-              </a>
-              <a
-                v-if="member.hasPortfolio"
-                :href="member.portfolioUrl"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-violet-100 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full hover:bg-violet-200 transition-colors"
-              >
-                portfolio
-              </a>
-              <span
-                v-else
-                class="bg-gray-100 text-gray-500 text-xs font-semibold px-3 py-1 rounded-full"
-              >
-                non-portfolio
-              </span>
-            </div>
-
             <p
               class="font-orbitron font-bold bg-white text-black rounded-3xl shadow-lg px-5 py-4 text-sm sm:text-base leading-relaxed"
             >
@@ -170,6 +202,6 @@ const members = [
       </div>
     </main>
 
-    <Footer class="shrink-0" />
+    <Footer />
   </div>
 </template>

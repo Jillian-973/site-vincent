@@ -86,7 +86,7 @@ const activites = [
   <div class="text-center min-h-screen flex flex-col" style="background-color: #000000">
     <div id="activites" class="py-8 md:py-12 px-4">
       <p
-        class="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[30px] font-bold leading-relaxed mt-16 max-w-6xl mx-auto"
+        class="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[30px] leading-relaxed mt-16 max-w-6xl mx-auto"
         style="font-family: 'Orbitron', sans-serif"
       >
         Projet lancé en mai 2026 et porté par des étudiants du campus <br />
@@ -96,10 +96,10 @@ const activites = [
         aux internautes désireux d’en apprendre davantage sur le sujet.
       </p>
       <p
-        class="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[30px] font-bold leading-relaxed mt-16 max-w-6xl mx-auto"
+        class="text-[18px] sm:text-[22px] lg:text-[28px] xl:text-[30px] leading-relaxed mt-28 max-w-6xl mx-auto"
         style="font-family: 'Orbitron', sans-serif"
       >
-        Dans la hilosophie gréco-romaine antique, et notamment chez <br />
+        Dans la philosophie gréco-romaine antique, et notamment chez <br />
         Aristote, la notion de « mésotès » désigne la voie du juste milieu. <br />
         C’est précisément ce type de regard à la fois mesuré et nuancé <br />
         que nous avons pour ambition de développer ici à propos de l’IA.
