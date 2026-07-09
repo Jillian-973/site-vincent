@@ -1,14 +1,17 @@
 <script setup>
 import Header from './components/header.vue'
 import Footer from './components/footer.vue'
-import vincentImg from './assets/vincent logo mode.png'
-import romainImg from './assets/romain logo mode.png'
-import elvanImg from './assets/elvan mode logo.png'
-import killianImg from './assets/kylian logo mode.png'
+
+import vincentImg from './assets/Pdp_Vincent.png'
+import romainImg from './assets/Pdp_Romain.png'
+import elvanImg from './assets/Pdp_Elvan.png'
+import killianImg from './assets/Pdp_Killian.png'
+
 import vincentCardImg from './assets/vincent.png'
 import romainCardImg from './assets/romain.png'
 import elvanCardImg from './assets/elvan.png'
 import killianCardImg from './assets/killian.png'
+
 import linkedinFallback from './assets/linkedin_footer.png'
 import linkedinKillian from './assets/linkedin-killian.png'
 import linkedinVincent from './assets/linkedin-vincent.png'
@@ -136,14 +139,11 @@ const members = [
         >
           <!-- Avatar + icônes réseaux sous le cercle -->
           <div class="flex flex-col items-center gap-2 shrink-0">
-            <div
-              class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-white shadow-lg overflow-hidden flex items-center justify-center"
-              :class="member.color"
-            >
+            <div class="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center">
               <img
                 :src="member.avatar"
                 :alt="`Portrait de ${member.name}`"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-contain"
                 :class="{ '-scale-x-100': member.lookingLeft }"
               />
             </div>

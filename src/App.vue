@@ -90,7 +90,15 @@ const activites = [
         style="font-family: 'Orbitron', sans-serif"
       >
         Projet lancé en mai 2026 et porté par des étudiants du campus <br />
-        lyonnais de MyDigitalSchool sous la supervision d’un formateur <br />
+        lyonnais de
+        <a
+          href="https://www.mydigitalschool.com/ecole-multimedia-lyon"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline"
+          >MyDigitalSchool</a
+        >
+        sous la supervision d’un formateur <br />
         indépendant en intelligence artificielle générative, la plateforme <br />
         s’adresse aux professionnels qui suivent une formation comme <br />
         aux internautes désireux d’en apprendre davantage sur le sujet.
@@ -100,7 +108,15 @@ const activites = [
         style="font-family: 'Orbitron', sans-serif"
       >
         Dans la philosophie gréco-romaine antique, et notamment chez <br />
-        Aristote, la notion de « mésotès » désigne la voie du juste milieu. <br />
+        Aristote, la notion de
+        <a
+          href="https://www.linkedin.com/pulse/se-soucier-de-trouver-le-juste-milieu-%C3%A9ric-delassus-owwhe/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline"
+          >mésotès</a
+        >
+        désigne la voie du juste milieu. <br />
         C’est précisément ce type de regard à la fois mesuré et nuancé <br />
         que nous avons pour ambition de développer ici à propos de l’IA.
       </p>
