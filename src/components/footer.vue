@@ -14,7 +14,7 @@ const dolfiLogoUrl =
 
 <template>
   <footer
-    class="relative border-t border-white/10 text-white bg-cover bg-top bg-no-repeat flex flex-col justify-end"
+    class="relative text-white bg-cover bg-top bg-no-repeat flex flex-col justify-end"
     :class="bgClass"
     :style="{ backgroundImage: `url(${footerBg})`, minHeight: '45vw' }"
   >
@@ -39,7 +39,7 @@ const dolfiLogoUrl =
           </a>
 
           <a
-            href="#"
+            href="https://www.youtube.com/@mesotes-fr"
             target="_blank"
             rel="noopener noreferrer"
             class="transition-transform duration-300 hover:scale-110"
